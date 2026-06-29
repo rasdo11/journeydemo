@@ -1,6 +1,6 @@
-// JourneySpan design tokens — millennial institutional.
+// JourneySpan design tokens: millennial institutional.
 // Warm editorial paper, heavy near-black frames, sharp geometry, and one
-// high-energy acid-lime accent inspired by contemporary venture/finance brands.
+// prostate-cancer-ribbon blue accent inspired by contemporary venture/finance brands.
 //
 // Legacy key names are kept and remapped so existing references keep working.
 export const C = {
@@ -15,19 +15,20 @@ export const C = {
   stone: "#68685E",    // secondary text / mid gray
   faint: "#9A9A8F",    // tertiary
 
-  accent: "#B7FF2A",   // acid-lime accent — active / selected / primary data
-  accentInk: "#203A00",
-  accentSoft: "#F1FFD8", // light accent fill for selected backgrounds
+  accent: "#69B3E7",   // prostate-cancer-ribbon blue: active / selected / primary data
+  accentInk: "#123A54",
+  accentSoft: "#E8F5FC", // light ribbon-blue fill for selected backgrounds
   cream: "#FBFAF2",
   blush: "#FFF0E7",
   lilac: "#EEE8FF",
   sky: "#E7F2FF",
-  night2: "#1B1B12",
+  highlight: "#B7FF2A", // optional highlighter, used sparingly
+  night2: "#111A20",
 
   // legacy aliases, remapped:
-  canopy: "#B7FF2A",   // active / positive / "you"
+  canopy: "#69B3E7",   // active / positive / "you"
   moss: "#68685E",     // secondary gray
-  leaf: "#B7FF2A",     // span fill → accent
+  leaf: "#69B3E7",     // span fill uses accent
   clay: "#0D0D08",     // near-black structural emphasis
   clayDeep: "#0D0D08",
   dim: "#C9C6BA",      // dimmed chart lines

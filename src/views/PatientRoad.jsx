@@ -120,7 +120,7 @@ export default function PatientRoad({ setView }) {
         </h1>
         <p style={{ fontSize: 14, color: C.stone, maxWidth: 680, lineHeight: 1.55, margin: 0 }}>
           Nothing is required, and there's no order to follow. In each open window you can add a photo, a voice note, or a quick
-          check-in — whatever you have the energy for. Every submission makes more of your recovery visible.
+          check-in, whatever you have the energy for. Every submission makes more of your recovery visible.
         </p>
       </div>
 
@@ -164,8 +164,8 @@ export default function PatientRoad({ setView }) {
             })}
           </svg>
           <div style={{ display: "flex", gap: 18, flexWrap: "wrap", padding: "4px 14px 12px" }}>
-            <span className="wr-tag"><span style={{ width: 11, height: 3, background: C.bare, borderRadius: 2, display: "inline-block" }} /> empty — nothing captured</span>
-            <span className="wr-tag"><span style={{ width: 11, height: 3, background: C.canopy, borderRadius: 2, display: "inline-block" }} /> filled — captured</span>
+            <span className="wr-tag"><span style={{ width: 11, height: 3, background: C.bare, borderRadius: 2, display: "inline-block" }} /> empty: nothing captured</span>
+            <span className="wr-tag"><span style={{ width: 11, height: 3, background: C.canopy, borderRadius: 2, display: "inline-block" }} /> filled: captured</span>
             <span className="wr-tag" style={{ marginLeft: "auto" }}>Tap any open window · order doesn't matter</span>
           </div>
         </div>
@@ -200,10 +200,10 @@ export default function PatientRoad({ setView }) {
           )}
 
           {selW.slots.length === 0 ? (
-            <p style={{ fontSize: 14, color: C.stone, marginTop: 18, lineHeight: 1.6 }}>This is a moment, not a check-in. Watch the message above — there's nothing to submit on surgery day.</p>
+            <p style={{ fontSize: 14, color: C.stone, marginTop: 18, lineHeight: 1.6 }}>This is a moment, not a check-in. Watch the message above. There is nothing to submit on surgery day.</p>
           ) : (
             <>
-              <div className="wr-eyebrow" style={{ marginTop: 22, marginBottom: 12 }}>Ways to share — pick any, skip the rest</div>
+              <div className="wr-eyebrow" style={{ marginTop: 22, marginBottom: 12 }}>Ways to share: pick any, skip the rest</div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12 }}>
                 {selW.slots.map((sl) => {
                   const m = MODE[sl.type]; const done = (subs[sel] || {})[sl.type]; const locked = selStatus === "upcoming";
@@ -249,7 +249,7 @@ export default function PatientRoad({ setView }) {
                   );
                 })}
               </div>
-              {selStatus === "upcoming" && <p style={{ fontSize: 12.5, color: C.stone, marginTop: 12 }}>You can watch the milestone video now — submissions for this window open once you reach it.</p>}
+              {selStatus === "upcoming" && <p style={{ fontSize: 12.5, color: C.stone, marginTop: 12 }}>You can watch the milestone video now: submissions for this window open once you reach it.</p>}
             </>
           )}
         </div>
@@ -273,7 +273,7 @@ export default function PatientRoad({ setView }) {
             <div style={{ display: "flex", gap: 9, alignItems: "flex-start", marginTop: 14, padding: "12px 13px", background: C.accentSoft, borderRadius: 2 }}>
               <Sparkles size={15} color={C.accentInk} style={{ marginTop: 1, flexShrink: 0 }} />
               <div style={{ fontSize: 12.5, color: C.ink, lineHeight: 1.5 }}>
-                At five weeks, men using JourneySpan make <strong>7</strong> signals visible on average. You're at <strong>{totals.done}</strong> — your team is seeing your recovery clearly.
+                At five weeks, men using JourneySpan make <strong>7</strong> signals visible on average. You're at <strong>{totals.done}</strong>: your team is seeing your recovery clearly.
               </div>
             </div>
           </div>

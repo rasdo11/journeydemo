@@ -158,11 +158,11 @@ export default function JourneySnapshot({ setView }) {
           </div>
         </div>
 
-        {/* surgery — personal + historical */}
+        {/* surgery: personal + historical */}
         <div className="js-panel js-fade" style={{ padding: 24 }}>
-          <div className="js-sectlabel"><Award size={16} color={C.clayDeep} /><span className="js-eyebrow">Your surgery — and the century behind it</span></div>
+          <div className="js-sectlabel"><Award size={16} color={C.clayDeep} /><span className="js-eyebrow">Your surgery and the century behind it</span></div>
           <p style={{ fontSize: 14.5, color: C.ink, lineHeight: 1.6, margin: "0 0 6px" }}>
-            What you had was a <strong>{opNote.procedure.toLowerCase()}</strong> with <strong>bilateral nerve-sparing</strong> — both delicate nerve bundles preserved. It is the most refined version of an operation more than a hundred years in the making.
+            What you had was a <strong>{opNote.procedure.toLowerCase()}</strong> with <strong>bilateral nerve-sparing</strong>: both delicate nerve bundles preserved. It is the most refined version of an operation more than a hundred years in the making.
           </p>
           <div style={{ marginTop: 20 }}>
             {surgeryHistory.map((h, i) => (
@@ -204,7 +204,7 @@ export default function JourneySnapshot({ setView }) {
         {/* benchmark */}
         <div className="js-panel js-fade" style={{ padding: 24 }}>
           <div className="js-sectlabel"><TrendingUp size={16} color={C.clayDeep} /><span className="js-eyebrow">How you're tracking vs patients like you</span></div>
-          <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4, color: C.bark }}>Continence recovery — your first six weeks</div>
+          <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4, color: C.bark }}>Continence recovery, your first six weeks</div>
           <p style={{ fontSize: 12.5, color: C.stone, margin: "0 0 14px" }}>Your line against a matched synthetic cohort and the top finishers, same surgery.</p>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
             {matchedPatient.criteria.map((c) => (
@@ -247,7 +247,7 @@ export default function JourneySnapshot({ setView }) {
         <div className="js-fade">
           <div className="js-sectlabel"><Sparkles size={16} color={C.clayDeep} /><span className="js-eyebrow">How to push your journey further</span></div>
           <p style={{ fontSize: 13.5, color: C.stone, lineHeight: 1.55, margin: "0 0 16px", maxWidth: 620 }}>
-            Drawn from men who reached the strongest one-year outcomes after this surgery — what set the top finishers apart.
+            Drawn from men who reached the strongest one-year outcomes after this surgery, with the habits that set the top finishers apart.
           </p>
           <div style={{ display: "grid", gap: 12 }}>
             {recommendations.map((r) => (

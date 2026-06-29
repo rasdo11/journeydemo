@@ -21,7 +21,7 @@ export default function App() {
       <Nav view={view} setView={setView} />
       <ActiveView setView={setView} />
 
-      {/* guided prev / next — follows the full narrative order */}
+      {/* guided prev / next: follows the full narrative order */}
       {idx >= 0 && (
         <div style={{ borderTop: `1px solid ${C.line}`, background: C.surface }}>
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "18px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>

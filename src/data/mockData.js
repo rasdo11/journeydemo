@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────
-// JourneySpan demo — one synthetic dataset, read by all three views.
+// JourneySpan demo: one synthetic dataset, read by all three views.
 // Everything here is fictional, patterned on published radical-prostatectomy
 // outcomes. Edit this file to change the demo's patient, numbers, or copy.
 // EPIC-26 © University of Michigan; free to use, no license required.
@@ -113,10 +113,10 @@ export const epicTimeline = [
 // ── PATIENT RECOVERY ROAD ─────────────────────────────────────────────────
 export const roadWindows = [
   { id: "base", label: "Before surgery", dates: "baseline", kind: "window",
-    video: { who: "Dr. Mara Alvarez", role: "Urologic surgeon", dur: "2:40", note: "We set your personal baseline today — the function you're starting from. Everything after is measured against this, not against a stranger." },
+    video: { who: "Dr. Mara Alvarez", role: "Urologic surgeon", dur: "2:40", note: "We set your personal baseline today, the function you're starting from. Everything after is measured against this, not against a stranger." },
     slots: [
       { type: "survey", title: "Baseline check-in", guide: "Your usual urinary, sexual, and energy levels before anything changes. This is the line we measure recovery against." },
-      { type: "voice", title: "How you're feeling going in", guide: "30 seconds, your own words. Nerves, hopes, questions — it helps your team know you, not just your chart." },
+      { type: "voice", title: "How you're feeling going in", guide: "30 seconds, your own words. Nerves, hopes, questions: it helps your team know you, not just your chart." },
     ] },
   { id: "surg", label: "Surgery", dates: "day 0", kind: "event",
     video: { who: "Dr. Mara Alvarez", role: "Urologic surgeon", dur: "3:10", note: "The first 48 hours: your catheter, what's normal, what isn't, and why a little blood in the urine is expected early on." },
@@ -124,33 +124,33 @@ export const roadWindows = [
   { id: "w02", label: "Weeks 0–2", dates: "days 1–14", kind: "window",
     video: { who: "Nurse Tomas Reyes", role: "Recovery nurse", dur: "4:05", note: "Living with the catheter at home: cleaning, leg-bag swaps, and the three things worth calling us about." },
     slots: [
-      { type: "photo", title: "Urine color", guide: "A quick photo of your bag. Color tells us about hydration and flags blood early — far better than trying to describe it later." },
-      { type: "voice", title: "First days at home", guide: "How is the catheter, sleep, and pain? Talk it through — we listen for what a 0–10 number can't carry." },
+      { type: "photo", title: "Urine color", guide: "A quick photo of your bag. Color tells us about hydration and flags blood early: far better than trying to describe it later." },
+      { type: "voice", title: "First days at home", guide: "How is the catheter, sleep, and pain? Talk it through: we listen for what a 0–10 number can't carry." },
       { type: "survey", title: "Pain & comfort", guide: "Four quick questions on pain, sleep, and catheter comfort." },
     ] },
   { id: "w24", label: "Weeks 2–4", dates: "days 15–28", kind: "window",
     video: { who: "Dr. Mara Alvarez", role: "Urologic surgeon", dur: "3:30", note: "Catheter's out. Leaks now are normal and they improve. Here's what continence usually looks like at this stage." },
     slots: [
       { type: "photo", title: "Pad at day's end", guide: "An end-of-day photo of your pad helps us see leakage volume without you having to estimate it." },
-      { type: "voice", title: "A leak moment", guide: "When did a leak catch you today? Walk us through the moment — standing, laughing, lifting. The trigger matters." },
+      { type: "voice", title: "A leak moment", guide: "When did a leak catch you today? Walk us through the moment: standing, laughing, lifting. The trigger matters." },
       { type: "survey", title: "Pads & triggers", guide: "Pads per day and what sets leaks off. Quick." },
     ] },
   { id: "w46", label: "Weeks 4–6", dates: "days 29–42", kind: "window",
-    video: { who: "Priya Shah, PT", role: "Pelvic floor therapist", dur: "5:20", note: "The pelvic-floor work that actually moves continence now — with a demo you can follow along at home." },
+    video: { who: "Priya Shah, PT", role: "Pelvic floor therapist", dur: "5:20", note: "The pelvic-floor work that actually moves continence now: with a demo you can follow along at home." },
     slots: [
-      { type: "photo", title: "Incision check (optional)", guide: "Only if something looks off — redness, opening, drainage. Otherwise skip it." },
-      { type: "voice", title: "How the exercises feel", guide: "Are you finding the right muscles? Describe it — we can correct technique from how you talk about it." },
+      { type: "photo", title: "Incision check (optional)", guide: "Only if something looks off: redness, opening, drainage. Otherwise skip it." },
+      { type: "voice", title: "How the exercises feel", guide: "Are you finding the right muscles? Describe it: we can correct technique from how you talk about it." },
       { type: "survey", title: "Continence & energy", guide: "Progress on leaks, plus energy and mood this week." },
     ] },
   { id: "w68", label: "Weeks 6–8", dates: "days 43–56", kind: "window",
-    video: { who: "Dr. Mara Alvarez", role: "Urologic surgeon", dur: "2:55", note: "Returning to activity: lifting, driving, work, intimacy — what's safe now and what to wait on." },
+    video: { who: "Dr. Mara Alvarez", role: "Urologic surgeon", dur: "2:55", note: "Returning to activity: lifting, driving, work, intimacy: what's safe now and what to wait on." },
     slots: [
       { type: "photo", title: "Your choice", guide: "Pad, urine color, or anything you want a second set of eyes on." },
       { type: "voice", title: "What's still limiting you", guide: "The thing that's most in your way right now. Naming it helps us target support." },
       { type: "survey", title: "Activity & early function", guide: "Activity level, continence, and the first signs of sexual function." },
     ] },
   { id: "m3", label: "Month 3", dates: "~day 90", kind: "window",
-    video: { who: "Dr. Mara Alvarez", role: "Urologic surgeon", dur: "3:15", note: "The three-month mark — where most men land, and what the next stretch of recovery tends to bring." },
+    video: { who: "Dr. Mara Alvarez", role: "Urologic surgeon", dur: "3:15", note: "The three-month mark is where most men land, and it shows what the next stretch of recovery tends to bring." },
     slots: [
       { type: "voice", title: "Reflect on the month", guide: "Looking back over the last month, what changed? Good and hard." },
       { type: "survey", title: "Recovery domains", guide: "A lighter check across urinary, sexual, and wellbeing." },
@@ -180,7 +180,7 @@ export const roadSeedSubs = {
 
 export const seedConcerns = [
   { from: "you", text: "Is it normal that leaks are worse in the evening?", when: "4 days ago" },
-  { from: "team", text: "Very common — pelvic-floor fatigue builds over the day. Try a set of exercises after lunch. Flagged for Dr. Alvarez to review at your next visit.", when: "3 days ago" },
+  { from: "team", text: "Very common: pelvic-floor fatigue builds over the day. Try a set of exercises after lunch. Flagged for Dr. Alvarez to review at your next visit.", when: "3 days ago" },
 ];
 
 export const intelligenceSignals = [
@@ -232,8 +232,8 @@ export const intuitiveMetrics = [
 export const surgeryPhases = [
   ["Bladder mobilization", "11:20"],
   ["Bladder neck dissection", "18:05"],
-  ["NVB preservation — left", "22:40"],
-  ["NVB preservation — right", "24:15"],
+  ["NVB preservation: left", "22:40"],
+  ["NVB preservation: right", "24:15"],
   ["Apical dissection", "16:50"],
   ["Posterior reconstruction", "9:10"],
   ["Urethrovesical anastomosis", "21:30"],
@@ -244,13 +244,13 @@ export const decisions = [
   {
     id: "nerve", label: "Bilateral nerve-sparing", value: "Both NVBs preserved (intrafascial)",
     target: ["sex"], phaseMatch: "NVB",
-    note: "Both neurovascular bundles preserved — this patient's sexual-function recovery is tracking ~8 points above the surgeon's cohort by month 6.",
+    note: "Both neurovascular bundles were preserved. This patient's sexual-function recovery is tracking ~8 points above the surgeon's cohort by month 6.",
     cohort: { cats: ["None", "Unilateral", "Bilateral"], vals: [18, 31, 49], hi: 2, y: "12-mo sexual fn", lowerBetter: false },
   },
   {
     id: "recon", label: "Posterior reconstruction", value: "Rocco stitch performed",
     target: ["incont"], phaseMatch: "reconstruction",
-    note: "Posterior musculofascial reconstruction is associated with faster early continence — pad-free reached ~5 weeks sooner than non-reconstruction cases.",
+    note: "Posterior musculofascial reconstruction is associated with faster early continence. Pad-free status was reached ~5 weeks sooner than non-reconstruction cases.",
     cohort: { cats: ["No recon", "Reconstruction"], vals: [3.4, 2.1], hi: 1, y: "months to pad-free", lowerBetter: true },
   },
   {
@@ -280,16 +280,16 @@ export const journey = {
   daysSince: 47,
   // Hero-framed written story of the journey so far.
   story: [
-    "Forty-seven days ago, you walked into an operating room and faced down prostate cancer. That takes a particular kind of courage — the quiet kind nobody applauds.",
-    "You started from a strong place, and you didn't waste it. Through the hardest stretch — the catheter, the first leaks, the long nights of the first two weeks — you showed up anyway, telling us the truth about how it really was.",
+    "Forty-seven days ago, you walked into an operating room and faced down prostate cancer. That takes a particular kind of courage, the quiet kind nobody applauds.",
+    "You started from a strong place, and you did not waste it. Through the hardest stretch, including the catheter, the first leaks, and the long nights of the first two weeks, you showed up anyway, telling us the truth about how it really was.",
     "And it's working. Your continence is returning ahead of where most men are at six weeks, and your energy is climbing back. This is your recovery. You are the one doing it.",
   ],
-  // Illustrative grade — scoring method to be finalized later.
+  // Illustrative grade: scoring method to be finalized later.
   grade: {
     letter: "B+",
     percentile: 72,
     headline: "Ahead of most, and still climbing",
-    note: "Illustrative preview. This blends how your recovery is tracking against benchmarks with how consistently you log — the exact formula is still being designed.",
+    note: "Illustrative preview. This blends how your recovery is tracking against benchmarks with how consistently you log. The exact formula is still being designed.",
   },
 };
 
@@ -305,15 +305,15 @@ export const surgeonBio = {
   ],
   bio: "Dr. Alvarez has spent nearly two decades on a single goal: removing the cancer while protecting the life a man wants to return to. Bilateral nerve-sparing is her signature, and she's among the higher-volume robotic prostatectomy surgeons in the region.",
   personal: "She came to medicine after caring for her own father through cancer, and she runs the city marathon most years. On the morning of surgery she tells every patient the same thing.",
-  quote: "The cancer is my job. Your recovery is a partnership — and you do the hardest part of it.",
+  quote: "The cancer is my job. Your recovery is a partnership, and you do the hardest part of it.",
 };
 
 export const surgeryHistory = [
   { year: "1904", title: "The first operation", text: "At Johns Hopkins, Hugh Hampton Young performs the first radical prostatectomy, proving prostate cancer could be surgically removed at all." },
   { year: "1945", title: "A new route", text: "Terence Millin introduces the retropubic approach, reaching the prostate through the lower abdomen." },
-  { year: "1982", title: "Saving the nerves", text: "Patrick Walsh maps the delicate nerves beside the prostate and pioneers nerve-sparing surgery — the breakthrough that protects continence and potency. Your operation descends directly from his." },
+  { year: "1982", title: "Saving the nerves", text: "Patrick Walsh maps the delicate nerves beside the prostate and pioneers nerve-sparing surgery, the breakthrough that protects continence and potency. Your operation descends directly from his." },
   { year: "2000s", title: "The robotic era", text: "The da Vinci system brings magnified 3D vision and steadier-than-human precision to the procedure." },
-  { year: "Today", title: "Your surgery", text: "Bilateral nerve-sparing, robot-assisted, both nerve bundles preserved — more than a century of progress, performed for you." },
+  { year: "Today", title: "Your surgery", text: "Bilateral nerve-sparing, robot-assisted, both nerve bundles preserved: more than a century of progress, performed for you." },
 ];
 
 export const exercisesDone = [
@@ -332,7 +332,7 @@ export const journeyBenchmark = [
 
 // Percentile-framed recommendations from those who finished full recovery.
 export const recommendations = [
-  { tag: "Continence", title: "Add one more pelvic-floor set a day", body: "Men in the top 20% of finishers averaged three sets daily by week six. You're at two — one more could move continence faster." },
+  { tag: "Continence", title: "Add one more pelvic-floor set a day", body: "Men in the top 20% of finishers averaged three sets daily by week six. You are at two, so one more could move continence faster." },
   { tag: "Energy", title: "Stretch your walks toward 25 minutes", body: "Top finishers were back to 25-minute daily walks by week four. You're close, and a little more lifts both energy and mood." },
   { tag: "Consistency", title: "Keep your logging streak alive", body: "You log five-plus days a week, better than most. Consistent logging is the single habit most tied to a strong recovery." },
 ];

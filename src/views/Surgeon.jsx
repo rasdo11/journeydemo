@@ -72,7 +72,7 @@ export default function Surgeon() {
         </div>
         <div className="wc-eyebrow">The loop, closed</div>
         <h1 className="wc-serif" style={{ fontSize: "clamp(23px,3vw,34px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-.025em", margin: "4px 0 6px", color: C.bark, maxWidth: 840 }}>
-          From the operative note to the recovery span — tracing a surgical decision to the outcome it may be associated with.
+          From the operative note to the recovery span: tracing a surgical decision to the outcome it may be associated with.
         </h1>
         <p style={{ fontSize: 14, color: C.stone, maxWidth: 700, lineHeight: 1.55, margin: 0 }}>
           The EMR operative note is the baseline. Optional OR-data imports add depth. The recovery data is the patient's own JourneySpan
@@ -83,7 +83,7 @@ export default function Surgeon() {
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "18px 24px 40px", display: "grid", gridTemplateColumns: "340px minmax(0,1fr)", gap: 18, alignItems: "start" }}>
         {/* LEFT */}
         <div style={{ display: "grid", gap: 18 }}>
-          {/* op note — baseline */}
+          {/* op note: baseline */}
           <div className="wc-panel" style={{ padding: 20 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -99,7 +99,7 @@ export default function Surgeon() {
             </div>
           </div>
 
-          {/* My Intuitive — optional import */}
+          {/* My Intuitive: optional import */}
           <div className="wc-panel" style={{ padding: 20 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -112,7 +112,7 @@ export default function Surgeon() {
             {imported.intuitive ? (
               <div className="wc-fade">
                 {intuitiveMetrics.map(([k, v]) => (<div key={k} className="wc-row"><span className="wc-key">{k}</span><span className="wc-val">{v}</span></div>))}
-                <div className="wc-eyebrow" style={{ marginTop: 12, lineHeight: 1.5, letterSpacing: ".06em" }}>Case Insights-class metrics — the objective OR signal paired to recovery.</div>
+                <div className="wc-eyebrow" style={{ marginTop: 12, lineHeight: 1.5, letterSpacing: ".06em" }}>Case Insights-class metrics paired with the objective OR signal and recovery.</div>
               </div>
             ) : (
               <div className="wc-empty">
@@ -124,7 +124,7 @@ export default function Surgeon() {
             )}
           </div>
 
-          {/* Touch Surgery — optional import */}
+          {/* Touch Surgery: optional import */}
           <div className="wc-panel" style={{ padding: 20 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -172,7 +172,7 @@ export default function Surgeon() {
         <div style={{ display: "grid", gap: 18 }}>
           <div className="wc-panel" style={{ padding: 20 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-              <GitBranch size={16} color={C.clayDeep} /><span className="wc-eyebrow">Surgical decisions — select to trace the link</span>
+              <GitBranch size={16} color={C.clayDeep} /><span className="wc-eyebrow">Surgical decisions: select to trace the link</span>
             </div>
             <p style={{ fontSize: 12.5, color: C.stone, margin: "0 0 14px" }}>Each decision points to the recovery domain it may be associated with.</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(150px,1fr))", gap: 9 }}>

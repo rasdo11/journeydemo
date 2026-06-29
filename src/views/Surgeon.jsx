@@ -5,11 +5,11 @@ import {
 } from "recharts";
 import {
   FileText, Video, Cpu, Link2, ChevronRight, Activity, CheckCircle2,
-  GitBranch, Gauge, Scissors, Plus, Check,
+  GitBranch, Gauge, Scissors, Plus, Check, Users,
 } from "lucide-react";
 import { C } from "../theme.js";
 import {
-  opNote, intuitiveMetrics, surgeryPhases, decisions, recoveryTrajectory, DOMAINS, patient,
+  opNote, intuitiveMetrics, surgeryPhases, decisions, recoveryTrajectory, DOMAINS, patient, matchedPatient,
 } from "../data/mockData.js";
 
 const css = `
@@ -35,7 +35,7 @@ const css = `
   padding:11px 13px;font-size:13px;text-align:left;border:1px solid ${C.line};background:${C.surface};
   transition:all .15s;display:flex;flex-direction:column;gap:3px;}
 .wc-chip:hover{border-color:${C.moss};}
-.wc-chip.on{border-color:${C.clay};background:#ECEEFE;box-shadow:0 0 0 1px ${C.clay} inset;}
+.wc-chip.on{border-color:${C.clay};background:${C.accentSoft};box-shadow:0 0 0 1px ${C.clay} inset;}
 .wc-chip:focus-visible{outline:2px solid ${C.clay};outline-offset:2px;}
 .wc-btn{appearance:none;border:0;cursor:pointer;font-family:'Inter',sans-serif;border-radius:2px;
   padding:9px 14px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:7px;
@@ -72,18 +72,18 @@ export default function Surgeon() {
         </div>
         <div className="wc-eyebrow">The loop, closed</div>
         <h1 className="wc-serif" style={{ fontSize: "clamp(23px,3vw,34px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-.025em", margin: "4px 0 6px", color: C.bark, maxWidth: 840 }}>
-          From the operative note to the recovery span — tracing a surgical decision to the outcome it shaped.
+          From the operative note to the recovery span: tracing a surgical decision to the outcome it may be associated with.
         </h1>
         <p style={{ fontSize: 14, color: C.stone, maxWidth: 700, lineHeight: 1.55, margin: 0 }}>
           The EMR operative note is the baseline. Optional OR-data imports add depth. The recovery data is the patient's own JourneySpan
-          record. Select a decision to highlight the recovery it drives and how it compares across the surgeon's cohort.
+          record. Select a decision to highlight the linked recovery domain and the hypothesis-generating pattern across the surgeon's cohort.
         </p>
       </div>
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "18px 24px 40px", display: "grid", gridTemplateColumns: "340px minmax(0,1fr)", gap: 18, alignItems: "start" }}>
         {/* LEFT */}
         <div style={{ display: "grid", gap: 18 }}>
-          {/* op note — baseline */}
+          {/* op note: baseline */}
           <div className="wc-panel" style={{ padding: 20 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -99,7 +99,7 @@ export default function Surgeon() {
             </div>
           </div>
 
-          {/* My Intuitive — optional import */}
+          {/* My Intuitive: optional import */}
           <div className="wc-panel" style={{ padding: 20 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -112,7 +112,7 @@ export default function Surgeon() {
             {imported.intuitive ? (
               <div className="wc-fade">
                 {intuitiveMetrics.map(([k, v]) => (<div key={k} className="wc-row"><span className="wc-key">{k}</span><span className="wc-val">{v}</span></div>))}
-                <div className="wc-eyebrow" style={{ marginTop: 12, lineHeight: 1.5, letterSpacing: ".06em" }}>Case Insights-class metrics — the objective OR signal paired to recovery.</div>
+                <div className="wc-eyebrow" style={{ marginTop: 12, lineHeight: 1.5, letterSpacing: ".06em" }}>Case Insights-class metrics paired with the objective OR signal and recovery.</div>
               </div>
             ) : (
               <div className="wc-empty">
@@ -124,7 +124,7 @@ export default function Surgeon() {
             )}
           </div>
 
-          {/* Touch Surgery — optional import */}
+          {/* Touch Surgery: optional import */}
           <div className="wc-panel" style={{ padding: 20 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -136,7 +136,7 @@ export default function Surgeon() {
             </div>
             {imported.touch ? (
               <div className="wc-fade">
-                <div style={{ background: `linear-gradient(120deg, ${C.bark}, #1A1C20)`, borderRadius: 2, padding: "14px 16px", color: C.paper, marginBottom: 12, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <div style={{ background: `linear-gradient(120deg, ${C.bark}, ${C.night2})`, borderRadius: 2, padding: "14px 16px", color: C.paper, marginBottom: 12, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <div>
                     <div style={{ fontSize: 13, fontWeight: 600 }}>Full case · 1:53:40</div>
                     <div className="wc-eyebrow" style={{ color: "rgba(255,255,255,.6)", marginTop: 2 }}>auto-segmented · 7 phases</div>
@@ -148,7 +148,7 @@ export default function Surgeon() {
                   {surgeryPhases.map(([p, t]) => {
                     const linked = dec.phaseMatch && p.includes(dec.phaseMatch);
                     return (
-                      <div key={p} className="wc-phase" style={linked ? { borderColor: C.clay, background: "#ECEEFE" } : {}}>
+                      <div key={p} className="wc-phase" style={linked ? { borderColor: C.clay, background: C.accentSoft } : {}}>
                         <Scissors size={13} color={linked ? C.clayDeep : C.stone} />
                         <span style={{ flex: 1, fontWeight: linked ? 600 : 400 }}>{p}</span>
                         <span className="wc-mono" style={{ color: C.stone }}>{t}</span>
@@ -172,9 +172,9 @@ export default function Surgeon() {
         <div style={{ display: "grid", gap: 18 }}>
           <div className="wc-panel" style={{ padding: 20 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-              <GitBranch size={16} color={C.clayDeep} /><span className="wc-eyebrow">Surgical decisions — select to trace the link</span>
+              <GitBranch size={16} color={C.clayDeep} /><span className="wc-eyebrow">Surgical decisions: select to trace the link</span>
             </div>
-            <p style={{ fontSize: 12.5, color: C.stone, margin: "0 0 14px" }}>Each decision points to the recovery domain it most influences.</p>
+            <p style={{ fontSize: 12.5, color: C.stone, margin: "0 0 14px" }}>Each decision points to the recovery domain it may be associated with.</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(150px,1fr))", gap: 9 }}>
               {decisions.map((d) => (
                 <button key={d.id} className={"wc-chip" + (decId === d.id ? " on" : "")} onClick={() => setDecId(d.id)} aria-pressed={decId === d.id}>
@@ -213,7 +213,7 @@ export default function Surgeon() {
                 </LineChart>
               </ResponsiveContainer>
             </div>
-            <div style={{ display: "flex", gap: 9, alignItems: "flex-start", marginTop: 12, padding: "12px 13px", background: "#ECEEFE", borderRadius: 2, border: `1px solid ${C.clay}33` }}>
+            <div style={{ display: "flex", gap: 9, alignItems: "flex-start", marginTop: 12, padding: "12px 13px", background: C.accentSoft, borderRadius: 2, border: `1px solid ${C.clay}` }}>
               <Link2 size={15} color={C.clayDeep} style={{ marginTop: 1, flexShrink: 0 }} />
               <div style={{ fontSize: 13, color: C.ink, lineHeight: 1.5 }}>{dec.note}</div>
             </div>
@@ -244,6 +244,23 @@ export default function Surgeon() {
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 10 }}>
               <CheckCircle2 size={14} color={C.clayDeep} />
               <span style={{ fontSize: 12.5, color: C.stone }}>Highlighted bar = this patient's surgical choice. The pattern is the research signal JourneySpan generates at scale.</span>
+            </div>
+          </div>
+
+          <div className="wc-panel" style={{ padding: 20 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+              <Users size={16} color={C.bark} /><span className="wc-eyebrow">Matched cohort lens</span>
+            </div>
+            <p style={{ fontSize: 12.5, color: C.stone, lineHeight: 1.55, margin: "0 0 12px" }}>
+              Compare decisions against patients like this one before treating a pattern as meaningful.
+            </p>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
+              {matchedPatient.criteria.map((c) => (
+                <span key={c} className="wc-tag" style={{ background: C.mist }}>{c}</span>
+              ))}
+            </div>
+            <div style={{ fontSize: 12.5, color: C.ink, lineHeight: 1.5, borderTop: `1px solid ${C.line}`, paddingTop: 12 }}>
+              {matchedPatient.label}: <strong>n={matchedPatient.n}</strong> synthetic matches. {matchedPatient.insight}
             </div>
           </div>
         </div>

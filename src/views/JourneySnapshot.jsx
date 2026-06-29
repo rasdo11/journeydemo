@@ -3,11 +3,11 @@ import {
 } from "recharts";
 import {
   ArrowLeft, Award, Stethoscope, Quote, Activity, Footprints, Wind,
-  Heart, TrendingUp, ChevronRight, Sparkles,
+  Heart, TrendingUp, ChevronRight, Sparkles, Share2, FileDown, Users,
 } from "lucide-react";
 import { C } from "../theme.js";
 import {
-  journey, surgeonBio, surgeryHistory, exercisesDone, journeyBenchmark, recommendations, opNote,
+  journey, surgeonBio, surgeryHistory, exercisesDone, journeyBenchmark, recommendations, opNote, matchedPatient,
 } from "../data/mockData.js";
 
 const css = `
@@ -34,7 +34,11 @@ const css = `
   box-shadow:0 0 0 1px ${C.line};flex-shrink:0;margin-top:2px;z-index:1;}
 .js-rec{display:flex;gap:14px;padding:16px;border:1px solid ${C.line};border-radius:2px;background:${C.surface};}
 .js-rectag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
-  color:${C.clayDeep};background:#ECEEFE;border-radius:6px;padding:3px 7px;display:inline-block;}
+  color:${C.clayDeep};background:${C.accentSoft};border-radius:2px;padding:3px 7px;display:inline-block;}
+.js-action{appearance:none;border:1px solid ${C.bark};background:${C.accent};color:${C.bark};border-radius:2px;
+  padding:11px 14px;font-size:13px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;
+  display:inline-flex;align-items:center;gap:8px;letter-spacing:-.01em;}
+.js-action.secondary{background:${C.surface};}
 .js-fade{animation:jsf .4s ease;}
 @keyframes jsf{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
 @media (prefers-reduced-motion:reduce){.js-fade{animation:none;}.js-back{transition:none;}}
@@ -64,7 +68,7 @@ export default function JourneySnapshot({ setView }) {
       <style>{css}</style>
 
       {/* hero */}
-      <div style={{ background: `linear-gradient(135deg, ${C.bark} 0%, #121317 60%, #1A1C20 100%)`, color: C.paper }}>
+      <div style={{ background: `linear-gradient(135deg, ${C.bark} 0%, ${C.night2} 72%, ${C.accentInk} 100%)`, color: C.paper }}>
         <div style={{ maxWidth: 980, margin: "0 auto", padding: "20px 24px 0" }}>
           <button className="js-back" onClick={() => setView && setView("patient")}>
             <ArrowLeft size={15} /> Back to my recovery span
@@ -88,6 +92,10 @@ export default function JourneySnapshot({ setView }) {
             <h1 className="js-serif" style={{ fontSize: "clamp(28px,4vw,44px)", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-.03em", margin: "8px 0 0" }}>
               {journey.heroName}, look how far you've come.
             </h1>
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 18 }}>
+              <button className="js-action"><Share2 size={15} /> Share with surgeon</button>
+              <button className="js-action secondary"><FileDown size={15} /> Export recovery record</button>
+            </div>
           </div>
         </div>
       </div>
@@ -144,17 +152,17 @@ export default function JourneySnapshot({ setView }) {
               </div>
             ))}
           </div>
-          <div style={{ display: "flex", gap: 12, alignItems: "flex-start", marginTop: 18, padding: "14px 16px", background: "#F2F3F5", borderRadius: 2 }}>
+          <div style={{ display: "flex", gap: 12, alignItems: "flex-start", marginTop: 18, padding: "14px 16px", background: C.mist, borderRadius: 2 }}>
             <Quote size={18} color={C.canopy} style={{ flexShrink: 0, marginTop: 2 }} />
             <p className="js-serif" style={{ fontStyle: "italic", fontSize: 16, lineHeight: 1.5, color: C.ink, margin: 0 }}>"{surgeonBio.quote}"</p>
           </div>
         </div>
 
-        {/* surgery — personal + historical */}
+        {/* surgery: personal + historical */}
         <div className="js-panel js-fade" style={{ padding: 24 }}>
-          <div className="js-sectlabel"><Award size={16} color={C.clayDeep} /><span className="js-eyebrow">Your surgery — and the century behind it</span></div>
+          <div className="js-sectlabel"><Award size={16} color={C.clayDeep} /><span className="js-eyebrow">Your surgery and the century behind it</span></div>
           <p style={{ fontSize: 14.5, color: C.ink, lineHeight: 1.6, margin: "0 0 6px" }}>
-            What you had was a <strong>{opNote.procedure.toLowerCase()}</strong> with <strong>bilateral nerve-sparing</strong> — both delicate nerve bundles preserved. It is the most refined version of an operation more than a hundred years in the making.
+            What you had was a <strong>{opNote.procedure.toLowerCase()}</strong> with <strong>bilateral nerve-sparing</strong>: both delicate nerve bundles preserved. It is the most refined version of an operation more than a hundred years in the making.
           </p>
           <div style={{ marginTop: 20 }}>
             {surgeryHistory.map((h, i) => (
@@ -195,9 +203,14 @@ export default function JourneySnapshot({ setView }) {
 
         {/* benchmark */}
         <div className="js-panel js-fade" style={{ padding: 24 }}>
-          <div className="js-sectlabel"><TrendingUp size={16} color={C.clayDeep} /><span className="js-eyebrow">How you're tracking vs others</span></div>
-          <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4, color: C.bark }}>Continence recovery — your first six weeks</div>
-          <p style={{ fontSize: 12.5, color: C.stone, margin: "0 0 14px" }}>Your line against the typical man and the top finishers, same surgery.</p>
+          <div className="js-sectlabel"><TrendingUp size={16} color={C.clayDeep} /><span className="js-eyebrow">How you're tracking vs patients like you</span></div>
+          <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4, color: C.bark }}>Continence recovery, your first six weeks</div>
+          <p style={{ fontSize: 12.5, color: C.stone, margin: "0 0 14px" }}>Your line against a matched synthetic cohort and the top finishers, same surgery.</p>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
+            {matchedPatient.criteria.map((c) => (
+              <span key={c} className="js-eyebrow" style={{ border: `1px solid ${C.line}`, borderRadius: 2, padding: "5px 8px", background: C.mist }}>{c}</span>
+            ))}
+          </div>
           <div style={{ height: 250, width: "100%" }}>
             <ResponsiveContainer>
               <AreaChart data={journeyBenchmark} margin={{ left: -16, right: 10, top: 6 }}>
@@ -234,12 +247,12 @@ export default function JourneySnapshot({ setView }) {
         <div className="js-fade">
           <div className="js-sectlabel"><Sparkles size={16} color={C.clayDeep} /><span className="js-eyebrow">How to push your journey further</span></div>
           <p style={{ fontSize: 13.5, color: C.stone, lineHeight: 1.55, margin: "0 0 16px", maxWidth: 620 }}>
-            Drawn from men who reached the strongest one-year outcomes after this surgery — what set the top finishers apart.
+            Drawn from men who reached the strongest one-year outcomes after this surgery, with the habits that set the top finishers apart.
           </p>
           <div style={{ display: "grid", gap: 12 }}>
             {recommendations.map((r) => (
               <div key={r.title} className="js-rec">
-                <div style={{ width: 36, height: 36, borderRadius: 2, background: "#ECEEFE", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <div style={{ width: 36, height: 36, borderRadius: 2, background: C.accentSoft, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                   <ChevronRight size={18} color={C.clayDeep} />
                 </div>
                 <div>
@@ -249,6 +262,14 @@ export default function JourneySnapshot({ setView }) {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        <div className="js-panel js-fade" style={{ padding: 24, display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
+          <Users size={20} color={C.clayDeep} />
+          <div style={{ flex: 1, minWidth: 240 }}>
+            <div className="js-eyebrow">{matchedPatient.label} · n={matchedPatient.n} synthetic matches</div>
+            <p style={{ fontSize: 14, color: C.ink, lineHeight: 1.6, margin: "8px 0 0" }}>{matchedPatient.insight}</p>
           </div>
         </div>
 

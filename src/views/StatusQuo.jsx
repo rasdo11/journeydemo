@@ -68,17 +68,34 @@ export default function StatusQuo() {
             <button role="tab" aria-selected={view === "clinic"} className={view === "clinic" ? "on" : ""} onClick={() => setView("clinic")}>What the doctor sees</button>
           </div>
         </div>
-        <div className="eq-eyebrow">{view === "patient" ? "The instrument, as actually administered" : "The instrument's output, as actually read"}</div>
-        <h1 className="eq-serif" style={{ fontSize: "clamp(23px,3.2vw,36px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-.025em", margin: "4px 0 6px", color: C.bark, maxWidth: 800 }}>
-          {view === "patient"
-            ? "The same 26-item form, four-week recall, given a handful of times around surgery."
-            : "Five domain scores at five moments — the entire picture recovery is judged on today."}
-        </h1>
-        <p style={{ fontSize: 14, color: C.stone, maxWidth: 660, lineHeight: 1.55, margin: 0 }}>
-          {view === "patient"
-            ? "Click a point on the care timeline to see what the patient is asked there — including where, today, they're asked nothing at all."
-            : "Validated, free, widely used — and structurally limited in ways that define what a better instrument would fix."}
-        </p>
+        <div className="eq-eyebrow">{view === "patient" ? "The survey, in a visual overview" : "The instrument's output, as actually read"}</div>
+        {view === "patient" ? (
+          <div style={{ display: "grid", gridTemplateColumns: "minmax(0,2fr) minmax(260px,1fr)", gap: 18, alignItems: "start" }}>
+            <div>
+              <h1 className="eq-serif" style={{ fontSize: "clamp(23px,3.2vw,36px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-.025em", margin: "4px 0 10px", color: C.bark, maxWidth: 800 }}>
+                For many, the post-op patient experience doesn't begin for 8 weeks.
+              </h1>
+              <p style={{ fontSize: 14, color: C.stone, maxWidth: 680, lineHeight: 1.55, margin: 0 }}>
+                Click a point on the care timeline to see what the patient is asked there, where, on their first crucial days of recovery, they're asked nothing at all.
+              </p>
+            </div>
+            <div className="eq-panel" style={{ padding: "14px 16px", background: C.accentSoft, borderColor: C.accent }}>
+              <div className="eq-eyebrow" style={{ color: C.accentInk, marginBottom: 7 }}>The status quo gap</div>
+              <p style={{ fontSize: 13.5, color: C.ink, lineHeight: 1.55, margin: 0 }}>
+                The main problem with the EPIC-26 and other PROMs is the vague alignment between its numeric scores and a patient's actual functional capabilities.
+              </p>
+            </div>
+          </div>
+        ) : (
+          <>
+            <h1 className="eq-serif" style={{ fontSize: "clamp(23px,3.2vw,36px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-.025em", margin: "4px 0 6px", color: C.bark, maxWidth: 800 }}>
+              Five domain scores at five moments: the entire picture recovery is judged on today.
+            </h1>
+            <p style={{ fontSize: 14, color: C.stone, maxWidth: 660, lineHeight: 1.55, margin: 0 }}>
+              Validated, free, widely used, and structurally limited in ways that define what a better instrument would fix.
+            </p>
+          </>
+        )}
       </div>
       <div style={{ maxWidth: 1160, margin: "0 auto", padding: "22px 24px 40px" }}>
         {view === "patient" ? <PatientView /> : <ClinicianView />}
@@ -94,7 +111,7 @@ export default function StatusQuo() {
 }
 
 function PatientView() {
-  const [stop, setStop] = useState("3mo");
+  const [stop, setStop] = useState("acute");
   const [ans, setAns] = useState({});
   const current = epicTimeline.find((t) => t.id === stop);
 
@@ -169,7 +186,7 @@ function PatientView() {
               <Lock size={26} color={C.stone} style={{ marginBottom: 14 }} />
               <h3 className="eq-serif" style={{ fontSize: 22, fontWeight: 500, margin: "0 0 8px", color: C.bark }}>Nothing is collected here</h3>
               <p style={{ fontSize: 14, color: C.stone, maxWidth: 380, margin: "0 auto", lineHeight: 1.6 }}>
-                The acute recovery window — catheter, first leaks, early continence work — is exactly when the patient struggles most.
+                The acute recovery window includes the catheter, first leaks, and early continence work. It is exactly when the patient struggles most.
                 But a four-week recall survey can't run mid-recovery, so the status quo captures none of it.
               </p>
               <button className="eq-tag" style={{ marginTop: 18, cursor: "pointer", borderColor: C.clay, color: C.clayDeep }} onClick={() => setStop("3mo")}>
@@ -183,7 +200,7 @@ function PatientView() {
           <div className="eq-panel" style={{ padding: 18, position: "sticky", top: 84 }}>
             <div className="eq-eyebrow" style={{ marginBottom: 4 }}>What your answers become</div>
             <div style={{ fontSize: 13, color: C.stone, marginBottom: 16, lineHeight: 1.5 }}>
-              {isSurvey ? `${answered} of 26 answered. Five 0–100 domain scores — the only thing that reaches your chart.` : "No survey at this visit, so no scores."}
+              {isSurvey ? `${answered} of 26 answered. Five 0–100 domain scores: the only thing that reaches your chart.` : "No survey at this visit, so no scores."}
             </div>
             {DOMAINS.map((d) => {
               const v = domainScores[d.key];
@@ -191,14 +208,14 @@ function PatientView() {
                 <div key={d.key} style={{ marginBottom: 14 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 5 }}>
                     <span style={{ fontSize: 12, fontWeight: 500 }}>{d.label}</span>
-                    <span className="eq-mono" style={{ fontSize: 13, color: v == null ? C.stone : C.bark }}>{v == null ? "—" : v}</span>
+                    <span className="eq-mono" style={{ fontSize: 13, color: v == null ? C.stone : C.bark }}>{v == null ? "-" : v}</span>
                   </div>
                   <div className="eq-scorebar"><div className="eq-scorefill" style={{ width: `${v ?? 0}%`, background: d.color, opacity: v == null ? 0.25 : 1 }} /></div>
                 </div>
               );
             })}
             <hr style={{ border: 0, borderTop: `1px solid ${C.line}`, margin: "8px 0 12px" }} />
-            <div style={{ fontSize: 11.5, color: C.stone, lineHeight: 1.5 }}>26 nuanced answers collapse to 5 numbers. The texture — which moment, which trigger, the why — isn't kept.</div>
+            <div style={{ fontSize: 11.5, color: C.stone, lineHeight: 1.5 }}>26 nuanced answers collapse to 5 numbers. The texture of which moment, which trigger, and why it happened is not kept.</div>
           </div>
         </div>
       </div>
@@ -289,14 +306,14 @@ function ClinicianView() {
 
         <div className="eq-panel" style={{ padding: 22 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-            <AlertTriangle size={15} color={C.clayDeep} /><span className="eq-eyebrow">What this baseline can — and can't — see</span>
+            <AlertTriangle size={15} color={C.clayDeep} /><span className="eq-eyebrow">What this baseline can and cannot see</span>
           </div>
           {[
             ["Five snapshots in two years", "Between visits, the chart is a flat line drawn through dots. The dips and recoveries in the gaps are invisible."],
             ["A blind acute window", "The 0–8 week period, when continence and catheter struggles peak, is never captured."],
             ["Four-week recall", "Each score asks a man to average a month of fluctuating experience into one answer, at a clinic visit."],
             ["One fixed form", "The week-12 and month-24 patient see the identical 26 questions. Nothing adapts to where they are."],
-            ["Function and bother, not why", "A score of 34 records the level — never the cause, the context, or the patient's own words."],
+            ["Function and bother, not why", "A score of 34 records the level, never the cause, the context, or the patient's own words."],
           ].map(([h, b], i) => (
             <div key={h} style={{ display: "flex", gap: 12, padding: "12px 0", borderTop: i ? `1px solid ${C.line}` : "none" }}>
               <div className="eq-mono" style={{ fontSize: 11, color: C.clayDeep, paddingTop: 2 }}>{String(i + 1).padStart(2, "0")}</div>

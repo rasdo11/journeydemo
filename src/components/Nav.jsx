@@ -4,7 +4,8 @@ import { C } from "../theme.js";
 export const STEPS = [
   { id: "status", n: "01", label: "Status quo", hint: "today's tool" },
   { id: "patient", n: "02", label: "Patient experience", hint: "the recovery span" },
-  { id: "surgeon", n: "03", label: "Surgeon & post-care", hint: "the OR-to-recovery link" },
+  { id: "journey", n: "03", label: "Journey Snapshot", hint: "the patient record" },
+  { id: "surgeon", n: "04", label: "Surgeon & post-care", hint: "the OR-to-recovery link" },
 ];
 
 const navCss = `
@@ -12,15 +13,15 @@ const navCss = `
 .nv-wrap{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:stretch;
   justify-content:space-between;gap:16px;flex-wrap:wrap;}
 .nv-brand{display:flex;align-items:center;gap:11px;padding:16px 0;}
-.nv-mark{width:22px;height:16px;flex-shrink:0;}
-.nv-name{font-family:'Inter',sans-serif;font-size:18px;font-weight:800;letter-spacing:-.02em;}
+.nv-mark{width:28px;height:18px;flex-shrink:0;}
+.nv-name{font-family:'Inter',sans-serif;font-size:18px;font-weight:900;letter-spacing:-.045em;}
 .nv-steps{display:flex;}
 .nv-step{appearance:none;border:0;cursor:pointer;background:transparent;font-family:'Inter',sans-serif;
   color:rgba(255,255,255,.55);padding:0 18px;display:flex;align-items:center;gap:10px;
   transition:background .14s,color .14s;text-align:left;border-left:1px solid rgba(255,255,255,.14);}
 .nv-step:first-child{border-left:0;}
 .nv-step:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.9);}
-.nv-step.on{background:#fff;color:${C.bark};}
+.nv-step.on{background:${C.accent};color:${C.bark};}
 .nv-step:focus-visible{outline:2px solid ${C.accent};outline-offset:-2px;}
 .nv-num{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.1em;opacity:.7;}
 .nv-on .nv-num{opacity:.55;color:${C.accent};}
@@ -30,18 +31,19 @@ const navCss = `
 `;
 
 function Mark() {
-  // geometric "span" mark: two end posts joined by a beam
+  // geometric "span" mark: optimistic, sharp, and instantly recognizable
   return (
-    <svg className="nv-mark" viewBox="0 0 22 16" fill="none" aria-hidden="true">
-      <rect x="0" y="0" width="3" height="16" fill={C.accent} />
-      <rect x="19" y="0" width="3" height="16" fill="#fff" />
-      <rect x="3" y="6.5" width="16" height="3" fill="#fff" />
+    <svg className="nv-mark" viewBox="0 0 28 18" fill="none" aria-hidden="true">
+      <rect x="0" y="0" width="7" height="18" fill={C.accent} />
+      <rect x="10" y="0" width="18" height="5" fill="#fff" />
+      <rect x="10" y="13" width="18" height="5" fill="#fff" />
+      <rect x="20" y="5" width="8" height="8" fill={C.accent} />
     </svg>
   );
 }
 
 export default function Nav({ view, setView }) {
-  const active = view === "journey" ? "patient" : view;
+  const active = view;
   return (
     <div className="nv-bar">
       <style>{navCss}</style>

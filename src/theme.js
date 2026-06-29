@@ -1,32 +1,38 @@
-// JourneySpan design tokens — "High-Integrity Minimalist".
-// Authoritative, institutional, structural. White blocks, heavy dark frames,
-// sharp geometry, one disciplined accent. Import C anywhere you need a color.
+// JourneySpan design tokens — millennial institutional.
+// Warm editorial paper, heavy near-black frames, sharp geometry, and one
+// high-energy acid-lime accent inspired by contemporary venture/finance brands.
 //
 // Legacy key names are kept and remapped so existing references keep working.
 export const C = {
-  ink: "#15171C",      // body text
-  bark: "#0B0B0C",     // near-black: dark blocks, headings, structural frames
-  border: "#0B0B0C",   // heavy structural container border
-  line: "#C4C7CE",     // visible structural hairline / chart grid / dividers
-  paper: "#FFFFFF",    // stark white background
+  ink: "#14140F",      // body text
+  bark: "#0D0D08",     // near-black: dark blocks, headings, structural frames
+  border: "#0D0D08",   // heavy structural container border
+  line: "#C4C2B8",     // visible structural hairline / chart grid / dividers
+  paper: "#FBFAF2",    // warm editorial background
   surface: "#FFFFFF",  // white container blocks
-  mist: "#F2F3F5",     // light gray fill (tracks, subtle blocks)
-  mistDark: "#E6E8EC",
-  stone: "#5C616B",    // secondary text / mid gray
-  faint: "#9AA0AC",    // tertiary
+  mist: "#F1F0E8",     // warm light fill (tracks, subtle blocks)
+  mistDark: "#E4E2D7",
+  stone: "#68685E",    // secondary text / mid gray
+  faint: "#9A9A8F",    // tertiary
 
-  accent: "#2A45F5",   // the single sharp accent — active / selected / primary data
-  accentSoft: "#ECEEFE", // light accent fill for selected backgrounds
+  accent: "#B7FF2A",   // acid-lime accent — active / selected / primary data
+  accentInk: "#203A00",
+  accentSoft: "#F1FFD8", // light accent fill for selected backgrounds
+  cream: "#FBFAF2",
+  blush: "#FFF0E7",
+  lilac: "#EEE8FF",
+  sky: "#E7F2FF",
+  night2: "#1B1B12",
 
   // legacy aliases, remapped:
-  canopy: "#2A45F5",   // was green → now accent (active / positive / "you")
-  moss: "#5C616B",     // secondary gray
-  leaf: "#2A45F5",     // span fill → accent
-  clay: "#0B0B0C",     // was warm accent → near-black structural emphasis
-  clayDeep: "#0B0B0C",
-  dim: "#C9CCD2",      // dimmed chart lines
-  void: "#EFF0F2",     // unmeasured gaps (light gray)
-  bare: "#E0E2E6",     // unfilled span segment (light gray)
+  canopy: "#B7FF2A",   // active / positive / "you"
+  moss: "#68685E",     // secondary gray
+  leaf: "#B7FF2A",     // span fill → accent
+  clay: "#0D0D08",     // near-black structural emphasis
+  clayDeep: "#0D0D08",
+  dim: "#C9C6BA",      // dimmed chart lines
+  void: "#EFEEE5",     // unmeasured gaps
+  bare: "#DDDACE",     // unfilled span segment
 };
 
 export const fontSans = "'Inter',system-ui,sans-serif";

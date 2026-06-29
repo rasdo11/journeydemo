@@ -21,7 +21,7 @@ export default function App() {
       <Nav view={view} setView={setView} />
       <ActiveView setView={setView} />
 
-      {/* guided prev / next — only on the three main steps */}
+      {/* guided prev / next — follows the full narrative order */}
       {idx >= 0 && (
         <div style={{ borderTop: `1px solid ${C.line}`, background: C.surface }}>
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "18px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
@@ -45,9 +45,9 @@ export default function App() {
 function navBtn(primary) {
   return {
     appearance: "none", cursor: "pointer", fontFamily: "Inter, sans-serif",
-    border: primary ? "0" : `1px solid ${C.line}`,
-    background: primary ? C.bark : "transparent",
-    color: primary ? C.paper : C.stone,
+    border: primary ? `1px solid ${C.bark}` : `1px solid ${C.line}`,
+    background: primary ? C.accent : "transparent",
+    color: primary ? C.bark : C.stone,
     borderRadius: 2, padding: "10px 16px", fontSize: 13.5, fontWeight: 500,
     display: "inline-flex", alignItems: "center", gap: 7,
   };

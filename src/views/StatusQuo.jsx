@@ -94,7 +94,7 @@ export default function StatusQuo() {
 }
 
 function PatientView() {
-  const [stop, setStop] = useState("3mo");
+  const [stop, setStop] = useState("acute");
   const [ans, setAns] = useState({});
   const current = epicTimeline.find((t) => t.id === stop);
 

@@ -1,6 +1,5 @@
-/* JourneySpan — global type + base. High-Integrity Minimalist.
-   Inter (geometric sans, incl. bold weights for authoritative headings) +
-   IBM Plex Mono (terminal-style UI labels, steps, data callouts). */
+/* JourneySpan — global type + base. Millennial institutional.
+   Inter for bold editorial/venture scale + IBM Plex Mono for precise UI labels. */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 * { box-sizing: border-box; }
@@ -12,8 +11,8 @@ html, body, #root {
 }
 
 body {
-  background: #FFFFFF;
-  color: #15171C;
+  background: #FBFAF2;
+  color: #14140F;
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }

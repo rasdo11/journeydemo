@@ -183,6 +183,20 @@ export const seedConcerns = [
   { from: "team", text: "Very common — pelvic-floor fatigue builds over the day. Try a set of exercises after lunch. Flagged for Dr. Alvarez to review at your next visit.", when: "3 days ago" },
 ];
 
+export const intelligenceSignals = [
+  { source: "Voice", signal: "Leaks cluster after long standing, evening fatigue, and laugh/cough moments.", confidence: "high" },
+  { source: "Photo", signal: "Pad saturation appears light-to-moderate; urine color within expected post-op range.", confidence: "reviewed" },
+  { source: "Check-in", signal: "Energy improving week-over-week while daily stress leakage persists.", confidence: "high" },
+  { source: "Care team", signal: "Non-urgent question queued for next visit summary; no emergency escalation.", confidence: "triaged" },
+];
+
+export const matchedPatient = {
+  label: "Patients like James",
+  criteria: ["Age 62–68", "Strong baseline continence", "Bilateral nerve-sparing", "No diabetes", "Moderate surgical complexity"],
+  n: 418,
+  insight: "Matched men who logged voice + survey signals during weeks 2–8 had earlier continence visibility and fewer unresolved visit questions.",
+};
+
 // ── SURGEON / POST-CARE ───────────────────────────────────────────────────
 // Baseline source: the structured EMR operative note (always present).
 export const opNote = {
@@ -225,7 +239,7 @@ export const surgeryPhases = [
   ["Urethrovesical anastomosis", "21:30"],
 ];
 
-// Surgical decisions and the recovery they shape.
+// Surgical decisions and the recovery domains they may be associated with.
 export const decisions = [
   {
     id: "nerve", label: "Bilateral nerve-sparing", value: "Both NVBs preserved (intrafascial)",
@@ -242,7 +256,7 @@ export const decisions = [
   {
     id: "bnp", label: "Bladder-neck preservation", value: "Preserved",
     target: ["incont"], phaseMatch: "Bladder neck",
-    note: "Bladder neck preserved — supports earlier continence and lower stress leakage in the first 3 months.",
+    note: "Bladder-neck preservation is associated with earlier continence and lower stress leakage in the first 3 months.",
     cohort: { cats: ["Resected", "Preserved"], vals: [58, 72], hi: 1, y: "3-mo continence", lowerBetter: false },
   },
   {
@@ -254,7 +268,7 @@ export const decisions = [
   {
     id: "ebl", label: "Blood loss & efficiency", value: "EBL 120 mL · 142 min console",
     target: ["incont", "sex"], phaseMatch: null,
-    note: "Low blood loss and efficient console time — fewer early complications and a smoother overall recovery pace.",
+    note: "Low blood loss and efficient console time are associated with fewer early complications and a smoother overall recovery pace.",
     cohort: { cats: ["High EBL", "Mid", "Low EBL"], vals: [71, 79, 86], hi: 2, y: "6-mo recovery index", lowerBetter: false },
   },
 ];

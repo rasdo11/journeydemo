@@ -4,10 +4,10 @@ import Nav, { STEPS } from "./components/Nav.jsx";
 import StatusQuo from "./views/StatusQuo.jsx";
 import PatientRoad from "./views/PatientRoad.jsx";
 import Surgeon from "./views/Surgeon.jsx";
-import JourneySnapshot from "./views/JourneySnapshot.jsx";
+import RiskPanel from "./views/RiskPanel.jsx";
 import { C } from "./theme.js";
 
-const VIEWS = { status: StatusQuo, patient: PatientRoad, surgeon: Surgeon, journey: JourneySnapshot };
+const VIEWS = { status: StatusQuo, patient: PatientRoad, surgeon: Surgeon, risk: RiskPanel };
 
 const appCss = `
 .app-pager{border-top:1px solid ${C.line};background:${C.surface};}

@@ -23,10 +23,10 @@ const navCss = `
 .nv-step:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.9);}
 .nv-step.on{background:${C.accent};color:${C.bark};}
 .nv-step:focus-visible{outline:2px solid ${C.accent};outline-offset:-2px;}
-.nv-num{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.1em;opacity:.7;}
+.nv-num{font-family:'Lora',serif;font-size:10px;font-weight:600;letter-spacing:.1em;opacity:.7;}
 .nv-on .nv-num{opacity:.55;color:${C.accent};}
 .nv-label{font-size:13px;font-weight:700;line-height:1.1;letter-spacing:-.01em;}
-.nv-hint{font-size:9.5px;opacity:.7;font-family:'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-weight:500;}
+.nv-hint{font-size:9.5px;opacity:.7;font-family:'Lora',serif;letter-spacing:.1em;text-transform:uppercase;font-weight:500;}
 @media (prefers-reduced-motion:reduce){.nv-step{transition:none;}}
 @media (max-width:720px){
   .nv-bar{position:sticky;}

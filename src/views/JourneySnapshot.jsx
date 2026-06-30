@@ -14,8 +14,8 @@ const css = `
 .js-root{font-family:'Inter',system-ui,sans-serif;color:${C.ink};}
 .js-root *{box-sizing:border-box;}
 .js-serif{font-family:'Inter',system-ui,sans-serif;font-weight:700;letter-spacing:-.02em;}
-.js-mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
-.js-eyebrow{font-family:'IBM Plex Mono',ui-monospace,monospace;text-transform:uppercase;
+.js-mono{font-family:'Lora',serif;}
+.js-eyebrow{font-family:'Lora',serif;text-transform:uppercase;
   letter-spacing:.16em;font-size:10px;font-weight:600;color:${C.stone};}
 .js-panel{background:${C.surface};border:1.5px solid ${C.border};border-radius:3px;}
 .js-back{appearance:none;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);
@@ -28,12 +28,12 @@ const css = `
 .js-barfill{height:100%;border-radius:6px;background:${C.canopy};}
 .js-tl-item{display:flex;gap:16px;padding-bottom:22px;position:relative;}
 .js-tl-rail{position:absolute;left:31px;top:8px;bottom:-6px;width:2px;background:${C.line};}
-.js-tl-year{width:64px;flex-shrink:0;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12px;
+.js-tl-year{width:64px;flex-shrink:0;text-align:right;font-family:'Lora',serif;font-size:12px;
   font-weight:500;color:${C.clayDeep};padding-top:1px;}
 .js-tl-dot{width:13px;height:13px;border-radius:50%;background:${C.canopy};border:3px solid ${C.surface};
   box-shadow:0 0 0 1px ${C.line};flex-shrink:0;margin-top:2px;z-index:1;}
 .js-rec{display:flex;gap:14px;padding:16px;border:1px solid ${C.line};border-radius:2px;background:${C.surface};}
-.js-rectag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+.js-rectag{font-family:'Lora',serif;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
   color:${C.clayDeep};background:${C.accentSoft};border-radius:2px;padding:3px 7px;display:inline-block;}
 .js-action{appearance:none;border:1px solid ${C.bark};background:${C.accent};color:${C.bark};border-radius:2px;
   padding:11px 14px;font-size:13px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;
@@ -62,7 +62,7 @@ const css = `
 }
 `;
 
-const tick = { fontSize: 11, fontFamily: "IBM Plex Mono, monospace", fill: C.stone };
+const tick = { fontSize: 11, fontFamily: "Lora, serif", fill: C.stone };
 
 function GradeRing({ percentile, letter }) {
   const r = 52, circ = 2 * Math.PI * r;
@@ -101,9 +101,9 @@ export default function JourneySnapshot({ setView }) {
             ))}
             <rect x="160" y="44" width="8" height="8" fill={C.accent} />
             <rect x="163" y="52" width="2" height="14" fill={C.accent} />
-            <text x="164" y="34" textAnchor="middle" fill="#fff" style={{ fontFamily: "IBM Plex Mono, monospace", fontSize: 13, fontWeight: 600, letterSpacing: ".05em" }}>DAY {journey.daysSince}</text>
-            <text x="14" y="92" fill="rgba(255,255,255,.5)" style={{ fontFamily: "IBM Plex Mono, monospace", fontSize: 8.5, letterSpacing: ".12em" }}>SURGERY</text>
-            <text x="286" y="92" textAnchor="end" fill="rgba(255,255,255,.5)" style={{ fontFamily: "IBM Plex Mono, monospace", fontSize: 8.5, letterSpacing: ".12em" }}>1 YEAR</text>
+            <text x="164" y="34" textAnchor="middle" fill="#fff" style={{ fontFamily: "Lora, serif", fontSize: 13, fontWeight: 600, letterSpacing: ".05em" }}>DAY {journey.daysSince}</text>
+            <text x="14" y="92" fill="rgba(255,255,255,.5)" style={{ fontFamily: "Lora, serif", fontSize: 8.5, letterSpacing: ".12em" }}>SURGERY</text>
+            <text x="286" y="92" textAnchor="end" fill="rgba(255,255,255,.5)" style={{ fontFamily: "Lora, serif", fontSize: 8.5, letterSpacing: ".12em" }}>1 YEAR</text>
           </svg>
           <div style={{ flex: 1, minWidth: 260 }}>
             <div className="js-eyebrow" style={{ color: "rgba(255,255,255,.6)" }}>Day {journey.daysSince} · your journey so far</div>

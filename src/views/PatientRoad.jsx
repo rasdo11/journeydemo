@@ -17,8 +17,8 @@ const css = `
 .wr-root{font-family:'Inter',system-ui,sans-serif;color:${C.ink};}
 .wr-root *{box-sizing:border-box;}
 .wr-serif{font-family:'Inter',system-ui,sans-serif;font-weight:700;letter-spacing:-.02em;}
-.wr-mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
-.wr-eyebrow{font-family:'IBM Plex Mono',ui-monospace,monospace;text-transform:uppercase;
+.wr-mono{font-family:'Lora',serif;}
+.wr-eyebrow{font-family:'Lora',serif;text-transform:uppercase;
   letter-spacing:.16em;font-size:10px;font-weight:600;color:${C.stone};}
 .wr-panel{background:${C.surface};border:1.5px solid ${C.border};border-radius:3px;}
 .wr-tag{display:inline-flex;align-items:center;gap:6px;border:1px solid ${C.line};border-radius:2px;
@@ -180,7 +180,7 @@ export default function PatientRoad({ setView }) {
                     </>
                   )}
                   <text x={n.x} y={BASE_Y + 32} textAnchor="middle" style={{ fontSize: 12, fontWeight: 700, fill: sel_ ? C.accent : C.ink, fontFamily: "Inter, sans-serif", letterSpacing: "-.01em" }}>{n.label}</text>
-                  <text x={n.x} y={BASE_Y + 46} textAnchor="middle" style={{ fontSize: 9, letterSpacing: ".14em", textTransform: "uppercase", fill: C.stone, fontFamily: "IBM Plex Mono, monospace", fontWeight: 500 }}>{n.dates}</text>
+                  <text x={n.x} y={BASE_Y + 46} textAnchor="middle" style={{ fontSize: 9, letterSpacing: ".14em", textTransform: "uppercase", fill: C.stone, fontFamily: "Lora, serif", fontWeight: 500 }}>{n.dates}</text>
                 </g>
               );
             })}

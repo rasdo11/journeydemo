@@ -55,7 +55,9 @@ first removing its grade/percentile/streak gamification (see "Honesty" below).
   styles never collide: `eq-` (StatusQuo), `wr-` (PatientRoad), `wc-` (Surgeon),
   `rp-` (RiskPanel), `js-` (JourneySnapshot, parked), `nv-` (Nav). Keep this
   discipline if you add components.
-- **Fonts** (Inter / IBM Plex Mono) load once in `src/index.css`. Don't re-import.
+- **Fonts** (Inter / Lora) load once in `src/index.css`. Don't re-import.
+- **No em dashes ("—") in any copy.** Use periods, commas, or colons instead.
+  This applies to all user-visible strings and is a hard rule.
 - No browser storage (localStorage/sessionStorage) — keep state in React.
 
 ## Design language
@@ -65,7 +67,7 @@ white blocks encased in heavy near-black frames, sharp squared corners, NO drop
 shadows or organic shapes. One disciplined accent (`accent`, prostate-cancer-
 ribbon blue) for active / selected / primary-data states; everything else is
 near-black, paper, and gray. Geometric sans (Inter, bold weights, tight tracking)
-for headings; IBM Plex Mono — uppercase, tracked, small — for UI labels, steps
+for headings; Lora (serif) — uppercase, tracked, small — for UI labels, steps
 ("STEP 01"), and data callouts. The recovery "span" fills geometrically (square
 nodes filling with the accent) — it does NOT bloom or use a branch/leaf metaphor.
 No points, badges, letter grades, or competitive percentile rankings anywhere

@@ -342,7 +342,7 @@ export const recommendations = [
 // whose 12-month continence recovery is deviating from their expected
 // trajectory. It IDENTIFIES for review; it does not direct treatment.
 
-// What the illustrative model combines — mirrors the Aim 3 input set verbatim
+// What the illustrative model combines: mirrors the Aim 3 input set verbatim
 // so a reviewer maps the demo to the aim instantly.
 export const riskModelCard = {
   primaryOutcome: "Urinary continence recovery at 12 months",
@@ -380,7 +380,7 @@ export const riskCohort = [
       "Engagement dropped Wk 4–6 (two windows missed)",
       "Pad count not declining (still 3+/day)",
     ],
-    review: "Surface for proactive outreach. Recovery deviating early and multimodal signals corroborate. Clinician decision required — consider early PT referral and a check-in call.",
+    review: "Surface for proactive outreach. Recovery deviating early and multimodal signals corroborate. Clinician decision required. Consider early PT referral and a check-in call.",
   },
   {
     id: "PT-0392", initials: "RC", age: 67, technique: "Unilateral NS",

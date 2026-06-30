@@ -1,6 +1,6 @@
 /* JourneySpan: global type + base. Millennial institutional.
-   Inter for bold editorial/venture scale + IBM Plex Mono for precise UI labels. */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+   Inter for bold editorial/venture scale + Lora for editorial UI labels. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&display=swap');
 
 * { box-sizing: border-box; }
 

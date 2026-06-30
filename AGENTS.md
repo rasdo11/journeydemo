@@ -31,7 +31,7 @@ A single-page demo of JourneySpan, a patient-reported-outcomes platform for pros
 - **Each view scopes its CSS** in a `<style>` block using a unique class prefix so styles
   never collide: `eq-` (StatusQuo), `wr-` (PatientRoad), `wc-` (Surgeon), `nv-` (Nav).
   Keep that discipline if you add components.
-- **Fonts** (Fraunces / Inter / IBM Plex Mono) load once in `src/index.css`. Don't re-import.
+- **Fonts** (Inter / Lora) load once in `src/index.css`. Don't re-import.
 - No browser storage (localStorage/sessionStorage) — keep state in React.
 
 ## Design language
@@ -41,7 +41,7 @@ encased in heavy near-black frames (`border`), sharp squared corners, NO drop
 shadows or organic shapes. One disciplined accent (`accent`, electric blue) for
 active / selected / primary-data states; everything else is black, white, and
 gray. Geometric sans (Inter, bold weights, tight tracking) for authoritative
-headings; IBM Plex Mono — uppercase, tracked, small — for UI labels, steps
+headings; Lora (serif) — uppercase, tracked, small — for UI labels, steps
 ("STEP 01"), and data callouts. The recovery "span" fills geometrically (square
 nodes filling with the accent) rather than blooming. No points/badges.
 

@@ -30,10 +30,14 @@ Fixed order, defined by `STEPS` in `src/components/Nav.jsx`:
    that IDENTIFIES at-risk patients plus a clinician workflow. It does not direct
    treatment.
 
-**Parked (not in the walkthrough):** `src/views/JourneySnapshot.jsx` is a
-consumer/patient-experience preview kept in the repo but removed from `STEPS`/
-`VIEWS`. It is NOT part of the research demo. Do not re-add it to the nav without
-first removing its grade/percentile/streak gamification (see "Honesty" below).
+**Off to the side (not in the walkthrough):** `src/views/JourneySnapshot.jsx` is
+a consumer/patient-experience concept preview. It is removed from `STEPS`
+(`Nav.jsx`) and is NOT one of the four research-aim steps, but it IS mapped in
+`VIEWS` (`App.jsx`) and reachable via a small "Also worth a look" link in the
+app footer, by explicit product decision: it's worth showing reviewers and
+discussing where a consumer product might use it, just not as part of the grant
+walkthrough. Do not add it to `STEPS`. See "Honesty" below for the gamification
+exception that comes with keeping it reachable.
 
 ## Stack
 - React 18 + Vite 5, plain JavaScript/JSX (no TypeScript).
@@ -88,6 +92,12 @@ patient-facing.
   patients — it risks IRB concerns and reads as tone-deaf to a patient reviewer.
 - EPIC-26 is University-of-Michigan copyrighted but free to use with no license.
   Keep that note.
+- **Temporary, explicit exception:** `JourneySnapshot.jsx` keeps its letter
+  grade / percentile ring / streak language even though it's patient-facing,
+  by direct product decision (ethics review deferred, not skipped). It stays
+  out of `STEPS` and is reached only through the secondary footer link in
+  `App.jsx`, never the main walkthrough. Don't "fix" this by de-gamifying it
+  or by promoting it into `STEPS` without checking with the product owner first.
 
 ## Common tasks
 - **Change the patient / numbers:** edit `src/data/mockData.js`.

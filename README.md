@@ -8,8 +8,10 @@ one research aim:
 3. **Surgeon & post-care** (Aim 1): the operative note linked to the recovery domains it may be associated with
 4. **Clinician review** (Aim 3): a recovery-risk model that flags patients deviating from their expected continence trajectory, for clinician review only
 
-A fifth view, **Journey Snapshot** (`src/views/JourneySnapshot.jsx`), is parked as
-a consumer/patient preview and is intentionally not part of the research walkthrough.
+A fifth view, **Journey Snapshot** (`src/views/JourneySnapshot.jsx`), is a consumer/patient
+concept preview. It's intentionally not one of the four numbered steps above, but it's reachable
+through a small "Also worth a look" link at the bottom of every step, for showing reviewers a
+direction the product could take and talking through where it might fit.
 
 All data is synthetic. This is a prototype for demonstration, not a clinical product.
 

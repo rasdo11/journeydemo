@@ -87,10 +87,13 @@ export default function JourneySnapshot({ setView }) {
 
       {/* hero */}
       <div style={{ background: `linear-gradient(135deg, ${C.bark} 0%, ${C.night2} 72%, ${C.accentInk} 100%)`, color: C.paper }}>
-        <div className="js-hero-top">
+        <div className="js-hero-top" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
           <button className="js-back" onClick={() => setView && setView("patient")}>
             <ArrowLeft size={15} /> Back to my recovery span
           </button>
+          <span className="js-eyebrow" style={{ color: "rgba(255,255,255,.55)" }}>
+            Concept preview, not one of the three funded aims
+          </span>
         </div>
         <div className="js-hero-main">
           <svg viewBox="0 0 300 120" width="300" height="120" style={{ maxWidth: "100%" }} aria-hidden="true">

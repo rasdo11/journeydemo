@@ -22,9 +22,14 @@ mapped to one research aim:
    per-patient explainable drivers and a recommended review action. It flags for clinician
    review only; it does not direct treatment.
 
-**Parked (not in the walkthrough):** `src/views/JourneySnapshot.jsx` is a consumer/patient
-preview kept in the repo but removed from `STEPS` / `VIEWS`. It is not part of the research
-demo.
+**Off to the side (not in the walkthrough):** `src/views/JourneySnapshot.jsx` is a
+consumer/patient concept preview. It is removed from `STEPS` (so it's not one of the four
+research-aim steps) but it IS mapped in `VIEWS`, reachable via a small footer link in
+`App.jsx` ("Also worth a look"). This is deliberate: it's worth showing reviewers and
+discussing where a consumer product might use the concept, just not as part of the grant
+walkthrough. It still carries its letter grade / percentile / streak gamification, an explicit
+temporary exception to the no-gamification rule below, made by product decision with ethics
+review deferred, not skipped. Don't de-gamify it or add it to `STEPS` without checking first.
 
 ## Stack
 - React 18 + Vite 5, plain JavaScript/JSX (no TypeScript).

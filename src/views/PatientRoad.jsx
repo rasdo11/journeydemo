@@ -1,10 +1,10 @@
 import { useState, useMemo } from "react";
 import {
   Camera, Mic, ClipboardList, Play, Square, MessageCircle, Lock,
-  Check, ShieldAlert, Sparkles, Scissors, X, ArrowRight,
+  Check, ShieldAlert, Sparkles, Scissors, X, ArrowRight, BrainCircuit,
 } from "lucide-react";
 import { C } from "../theme.js";
-import { roadWindows, roadCurrent, roadSeedSubs, seedConcerns } from "../data/mockData.js";
+import { roadWindows, roadCurrent, roadSeedSubs, seedConcerns, intelligenceSignals } from "../data/mockData.js";
 
 function lerp(a, b, t) { return a + (b - a) * t; }
 function hexToRgb(h) { return [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]; }
@@ -27,7 +27,7 @@ const css = `
 .wr-node:focus-visible circle,.wr-node:focus-visible rect{stroke:${C.clay};stroke-width:3;}
 .wr-slot{border:1px solid ${C.line};border-radius:2px;padding:16px;background:${C.surface};
   transition:border-color .15s;display:flex;flex-direction:column;gap:10px;}
-.wr-slot.done{border-color:${C.canopy};background:#F2F3F5;}
+.wr-slot.done{border-color:${C.canopy};background:${C.accentSoft};}
 .wr-slot.locked{opacity:.55;}
 .wr-icon{width:38px;height:38px;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .wr-btn{appearance:none;border:0;cursor:pointer;font-family:'Inter',sans-serif;border-radius:2px;
@@ -53,11 +53,33 @@ const css = `
 .wr-area{width:100%;border:1px solid ${C.line};border-radius:2px;padding:11px 12px;font-size:13px;
   font-family:'Inter',sans-serif;resize:vertical;min-height:74px;background:${C.surface};color:${C.ink};}
 .wr-area:focus{outline:2px solid ${C.clay};outline-offset:1px;}
+.wr-page{max-width:1180px;margin:0 auto;padding:26px 24px 6px;}
+.wr-road-wrap{max-width:1180px;margin:0 auto;padding:18px 24px 0;}
+.wr-content{max-width:1180px;margin:0 auto;padding:18px 24px 40px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;}
+.wr-cta-wrap{max-width:1180px;margin:0 auto;padding:0 24px 48px;}
+.wr-headrow{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
+.wr-road-svg{min-width:900px;}
+.wr-sidebar{display:grid;gap:18px;align-content:start;}
+@media (max-width:760px){
+  .wr-page{padding:20px 14px 6px;}
+  .wr-road-wrap{padding:14px 14px 0;}
+  .wr-content{padding:14px 14px 28px;grid-template-columns:1fr!important;}
+  .wr-cta-wrap{padding:0 14px 32px;}
+  .wr-headrow{display:grid;grid-template-columns:1fr;gap:10px;}
+  .wr-headrow > div{width:100%;justify-content:space-between;}
+  .wr-meter{width:100%;min-width:120px;}
+  .wr-road-svg{min-width:680px;height:132px;}
+  .wr-panel{border-width:1.25px;}
+  .wr-slot{padding:14px;}
+  .wr-btn{width:100%;justify-content:center;min-height:42px;}
+  .wr-video > div{padding:16px!important;}
+  .wr-cta-wrap button{padding:18px 16px!important;align-items:flex-start!important;}
+}
 `;
 
 const MODE = {
-  photo: { Icon: Camera, label: "Photo", bg: "#ECEEFE", fg: C.clayDeep, verb: "Add a photo", done: "Photo shared" },
-  voice: { Icon: Mic, label: "Voice", bg: "#F2F3F5", fg: C.clayDeep, verb: "Record a note", done: "Voice note shared" },
+  photo: { Icon: Camera, label: "Photo", bg: C.lilac, fg: C.clayDeep, verb: "Add a photo", done: "Photo shared" },
+  voice: { Icon: Mic, label: "Voice", bg: C.mist, fg: C.clayDeep, verb: "Record a note", done: "Voice note shared" },
   survey: { Icon: ClipboardList, label: "Check-in", bg: C.mist, fg: C.bark, verb: "Start check-in", done: "Check-in done" },
 };
 
@@ -106,27 +128,27 @@ export default function PatientRoad({ setView }) {
   return (
     <div className="wr-root">
       <style>{css}</style>
-      <div style={{ maxWidth: 1180, margin: "0 auto", padding: "26px 24px 6px" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, flexWrap: "wrap", marginBottom: 14 }}>
+      <div className="wr-page">
+        <div className="wr-headrow">
           <span className="wr-tag">recovery span · prototype</span>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <span className="wr-eyebrow">Your span · {totals.bloom}% complete</span>
+            <span className="wr-eyebrow">Your span · {totals.bloom}% signal visible</span>
             <div className="wr-meter"><div className="wr-meterfill" style={{ width: `${totals.bloom}%` }} /></div>
           </div>
         </div>
         <div className="wr-eyebrow">Your recovery, sectioned into windows</div>
         <h1 className="wr-serif" style={{ fontSize: "clamp(23px,3vw,34px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-.025em", margin: "4px 0 6px", color: C.bark, maxWidth: 820 }}>
-          Complete the windows that are open. The span fills as you submit.
+          Build the record in the windows that are open. The signal sharpens as you share.
         </h1>
         <p style={{ fontSize: 14, color: C.stone, maxWidth: 680, lineHeight: 1.55, margin: 0 }}>
           Nothing is required, and there's no order to follow. In each open window you can add a photo, a voice note, or a quick
-          check-in — whatever you have the energy for. Every submission fills more of your span.
+          check-in, whatever you have the energy for. Every submission makes more of your recovery visible.
         </p>
       </div>
 
-      <div style={{ maxWidth: 1180, margin: "0 auto", padding: "18px 24px 0" }}>
+      <div className="wr-road-wrap">
         <div className="wr-panel" style={{ padding: "8px 8px 4px", overflowX: "auto" }}>
-          <svg viewBox={`0 0 ${VB_W} ${VB_H}`} width="100%" height="150" style={{ minWidth: 900 }} role="group" aria-label="Recovery span">
+          <svg className="wr-road-svg" viewBox={`0 0 ${VB_W} ${VB_H}`} width="100%" height="150" role="group" aria-label="Recovery span">
             {nodes.slice(0, -1).map((n, i) => {
               const m = nodes[i + 1]; const f = fillOf(n);
               const col = status(n.id) === "upcoming" ? C.bare : mix(C.bare, C.accent, f);
@@ -164,14 +186,14 @@ export default function PatientRoad({ setView }) {
             })}
           </svg>
           <div style={{ display: "flex", gap: 18, flexWrap: "wrap", padding: "4px 14px 12px" }}>
-            <span className="wr-tag"><span style={{ width: 11, height: 3, background: C.bare, borderRadius: 2, display: "inline-block" }} /> empty — nothing captured</span>
-            <span className="wr-tag"><span style={{ width: 11, height: 3, background: C.canopy, borderRadius: 2, display: "inline-block" }} /> filled — captured</span>
+            <span className="wr-tag"><span style={{ width: 11, height: 3, background: C.bare, borderRadius: 2, display: "inline-block" }} /> empty: nothing captured</span>
+            <span className="wr-tag"><span style={{ width: 11, height: 3, background: C.canopy, borderRadius: 2, display: "inline-block" }} /> filled: captured</span>
             <span className="wr-tag" style={{ marginLeft: "auto" }}>Tap any open window · order doesn't matter</span>
           </div>
         </div>
       </div>
 
-      <div style={{ maxWidth: 1180, margin: "0 auto", padding: "18px 24px 40px", display: "grid", gridTemplateColumns: "minmax(0,1fr) 320px", gap: 18 }}>
+      <div className="wr-content">
         <div className="wr-panel wr-fade" key={sel} style={{ padding: 24 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
             <div>
@@ -180,13 +202,13 @@ export default function PatientRoad({ setView }) {
             </div>
             {selStatus === "upcoming"
               ? <span className="wr-tag" style={{ color: C.clayDeep, borderColor: C.clay }}><Lock size={12} /> opens when you reach it</span>
-              : selW.slots.length > 0 && <span className="wr-tag"><Square size={11} color={C.accent} /> {selW.slots.filter((s) => (subs[sel] || {})[s.type]).length}/{selW.slots.length} shared</span>}
+              : selW.slots.length > 0 && <span className="wr-tag"><Square size={11} color={C.accentInk} /> {selW.slots.filter((s) => (subs[sel] || {})[s.type]).length}/{selW.slots.length} signals visible</span>}
           </div>
 
           {selW.video && (
             <div className="wr-video wr-fade" style={{ marginTop: 18 }} role="button" tabIndex={0}
               onClick={() => setVideo(selW.video)} onKeyDown={(e) => (e.key === "Enter") && setVideo(selW.video)}>
-              <div style={{ background: `linear-gradient(120deg, ${C.bark}, #1A1C20)`, padding: "20px 20px", display: "flex", alignItems: "center", gap: 16 }}>
+              <div style={{ background: `linear-gradient(120deg, ${C.bark}, ${C.night2})`, padding: "20px 20px", display: "flex", alignItems: "center", gap: 16 }}>
                 <div style={{ width: 46, height: 46, borderRadius: 2, background: "rgba(255,255,255,.16)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                   <Play size={20} color={C.paper} fill={C.paper} />
                 </div>
@@ -200,10 +222,10 @@ export default function PatientRoad({ setView }) {
           )}
 
           {selW.slots.length === 0 ? (
-            <p style={{ fontSize: 14, color: C.stone, marginTop: 18, lineHeight: 1.6 }}>This is a moment, not a check-in. Watch the message above — there's nothing to submit on surgery day.</p>
+            <p style={{ fontSize: 14, color: C.stone, marginTop: 18, lineHeight: 1.6 }}>This is a moment, not a check-in. Watch the message above. There is nothing to submit on surgery day.</p>
           ) : (
             <>
-              <div className="wr-eyebrow" style={{ marginTop: 22, marginBottom: 12 }}>Ways to share — pick any, skip the rest</div>
+              <div className="wr-eyebrow" style={{ marginTop: 22, marginBottom: 12 }}>Ways to share: pick any, skip the rest</div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12 }}>
                 {selW.slots.map((sl) => {
                   const m = MODE[sl.type]; const done = (subs[sel] || {})[sl.type]; const locked = selStatus === "upcoming";
@@ -249,17 +271,17 @@ export default function PatientRoad({ setView }) {
                   );
                 })}
               </div>
-              {selStatus === "upcoming" && <p style={{ fontSize: 12.5, color: C.stone, marginTop: 12 }}>You can watch the milestone video now — submissions for this window open once you reach it.</p>}
+              {selStatus === "upcoming" && <p style={{ fontSize: 12.5, color: C.stone, marginTop: 12 }}>You can watch the milestone video now: submissions for this window open once you reach it.</p>}
             </>
           )}
         </div>
 
-        <div style={{ display: "grid", gap: 18, alignContent: "start" }}>
+        <div className="wr-sidebar">
           <div className="wr-panel" style={{ padding: 20 }}>
             <div className="wr-eyebrow" style={{ marginBottom: 10 }}>Your recovery so far</div>
             <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
               <span className="wr-stat" style={{ fontSize: 40 }}>{totals.done}</span>
-              <span style={{ fontSize: 13, color: C.stone }}>of {totals.avail} possible shares</span>
+              <span style={{ fontSize: 13, color: C.stone }}>of {totals.avail} recovery signals visible</span>
             </div>
             <div style={{ display: "flex", gap: 8, margin: "14px 0 4px" }}>
               {[["photo", Camera], ["voice", Mic], ["survey", ClipboardList]].map(([k, Icon]) => (
@@ -270,11 +292,28 @@ export default function PatientRoad({ setView }) {
                 </div>
               ))}
             </div>
-            <div style={{ display: "flex", gap: 9, alignItems: "flex-start", marginTop: 14, padding: "12px 13px", background: "#F2F3F5", borderRadius: 2 }}>
-              <Sparkles size={15} color={C.canopy} style={{ marginTop: 1, flexShrink: 0 }} />
+            <div style={{ display: "flex", gap: 9, alignItems: "flex-start", marginTop: 14, padding: "12px 13px", background: C.accentSoft, borderRadius: 2 }}>
+              <Sparkles size={15} color={C.accentInk} style={{ marginTop: 1, flexShrink: 0 }} />
               <div style={{ fontSize: 12.5, color: C.ink, lineHeight: 1.5 }}>
-                At five weeks, men using JourneySpan share <strong>7</strong> on average. You're at <strong>{totals.done}</strong> — your team is seeing your recovery clearly.
+                At five weeks, men using JourneySpan make <strong>7</strong> signals visible on average. You're at <strong>{totals.done}</strong>: your team is seeing your recovery clearly.
               </div>
+            </div>
+          </div>
+
+          <div className="wr-panel" style={{ padding: 20 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+              <BrainCircuit size={16} color={C.bark} /><span className="wr-eyebrow">Recovery intelligence</span>
+            </div>
+            <p style={{ fontSize: 12.5, color: C.stone, lineHeight: 1.55, margin: "0 0 12px" }}>
+              JourneySpan turns optional inputs into structured signals your team can review.
+            </p>
+            <div style={{ display: "grid", gap: 8 }}>
+              {intelligenceSignals.map((s) => (
+                <div key={s.source} style={{ border: `1px solid ${C.line}`, borderRadius: 2, padding: "10px 11px", background: C.surface }}>
+                  <div className="wr-eyebrow" style={{ color: C.bark, marginBottom: 4 }}>{s.source} · {s.confidence}</div>
+                  <div style={{ fontSize: 12.5, color: C.ink, lineHeight: 1.45 }}>{s.signal}</div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -282,7 +321,7 @@ export default function PatientRoad({ setView }) {
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
               <MessageCircle size={16} color={C.bark} /><span className="wr-eyebrow">Ask your care team</span>
             </div>
-            <div style={{ display: "flex", gap: 6, alignItems: "flex-start", fontSize: 11.5, color: C.clayDeep, background: "#F2F3F5", borderRadius: 2, padding: "8px 10px", margin: "6px 0 12px" }}>
+            <div style={{ display: "flex", gap: 6, alignItems: "flex-start", fontSize: 11.5, color: C.clayDeep, background: C.mist, borderRadius: 2, padding: "8px 10px", margin: "6px 0 12px" }}>
               <ShieldAlert size={13} style={{ marginTop: 1, flexShrink: 0 }} /> For non-urgent questions only. Call your clinic or 911 in an emergency.
             </div>
             <div style={{ display: "grid", gap: 8, marginBottom: 12 }}>
@@ -300,10 +339,10 @@ export default function PatientRoad({ setView }) {
         </div>
       </div>
 
-      <div style={{ maxWidth: 1180, margin: "0 auto", padding: "0 24px 48px" }}>
+      <div className="wr-cta-wrap">
         <button onClick={() => setView && setView("journey")} style={{
           width: "100%", appearance: "none", cursor: "pointer", border: 0, borderRadius: 3,
-          padding: "22px 26px", background: `linear-gradient(120deg, ${C.bark}, #1A1C20)`, color: C.paper,
+          padding: "22px 26px", background: `linear-gradient(120deg, ${C.bark}, ${C.night2})`, color: C.paper,
           fontFamily: "Inter, sans-serif", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16,
         }}>
           <span style={{ display: "flex", alignItems: "center", gap: 16 }}>
@@ -311,8 +350,8 @@ export default function PatientRoad({ setView }) {
               <Square size={18} color={C.accent} />
             </span>
             <span style={{ textAlign: "left" }}>
-              <span style={{ display: "block", fontFamily: "Inter, system-ui, sans-serif", fontSize: 20, fontWeight: 600 }}>See your journey so far</span>
-              <span style={{ display: "block", fontSize: 13, color: "rgba(255,255,255,.72)", marginTop: 2 }}>Your story, your surgeon, your progress, and how you're tracking</span>
+              <span style={{ display: "block", fontFamily: "Inter, system-ui, sans-serif", fontSize: 20, fontWeight: 700 }}>Open your Journey Snapshot</span>
+              <span style={{ display: "block", fontSize: 13, color: "rgba(255,255,255,.72)", marginTop: 2 }}>Your shareable story, visit summary, progress, and matched benchmark</span>
             </span>
           </span>
           <ArrowRight size={24} color={C.paper} />
@@ -322,7 +361,7 @@ export default function PatientRoad({ setView }) {
       {video && (
         <div onClick={() => setVideo(null)} style={{ position: "fixed", inset: 0, background: "rgba(11,11,12,.6)", display: "flex", alignItems: "center", justifyContent: "center", padding: 24, zIndex: 50 }}>
           <div className="wr-fade" onClick={(e) => e.stopPropagation()} style={{ background: C.surface, borderRadius: 3, maxWidth: 460, width: "100%", overflow: "hidden" }}>
-            <div style={{ background: `linear-gradient(120deg, ${C.bark}, #1A1C20)`, aspectRatio: "16/9", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+            <div style={{ background: `linear-gradient(120deg, ${C.bark}, ${C.night2})`, aspectRatio: "16/9", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
               <div style={{ width: 60, height: 60, borderRadius: 2, background: "rgba(255,255,255,.18)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <Play size={26} color={C.paper} fill={C.paper} />
               </div>

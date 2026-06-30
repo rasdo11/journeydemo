@@ -16,14 +16,14 @@ const css = `
 .wc-root{font-family:'Inter',system-ui,sans-serif;color:${C.ink};}
 .wc-root *{box-sizing:border-box;}
 .wc-serif{font-family:'Inter',system-ui,sans-serif;font-weight:700;letter-spacing:-.02em;}
-.wc-mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
-.wc-eyebrow{font-family:'IBM Plex Mono',ui-monospace,monospace;text-transform:uppercase;
+.wc-mono{font-family:'Lora',serif;}
+.wc-eyebrow{font-family:'Lora',serif;text-transform:uppercase;
   letter-spacing:.16em;font-size:10px;font-weight:600;color:${C.stone};}
 .wc-panel{background:${C.surface};border:1.5px solid ${C.border};border-radius:3px;}
 .wc-tag{display:inline-flex;align-items:center;gap:6px;border:1px solid ${C.line};border-radius:2px;
   padding:4px 10px;font-size:11px;color:${C.stone};background:${C.surface};}
 .wc-conn{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;color:${C.canopy};
-  font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;}
+  font-family:'Lora',serif;letter-spacing:.08em;text-transform:uppercase;}
 .wc-dot{width:6px;height:6px;border-radius:6px;background:${C.canopy};}
 .wc-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid ${C.line};font-size:13px;}
 .wc-row:first-child{border-top:0;}
@@ -69,7 +69,7 @@ const css = `
 }
 `;
 
-const tick = { fontSize: 11, fontFamily: "IBM Plex Mono, monospace", fill: C.stone };
+const tick = { fontSize: 11, fontFamily: "Lora, serif", fill: C.stone };
 
 export default function Surgeon() {
   const [decId, setDecId] = useState("nerve");

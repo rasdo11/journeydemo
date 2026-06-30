@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import {
   Camera, Mic, ClipboardList, Play, Square, MessageCircle, Lock,
-  Check, ShieldAlert, Sparkles, Scissors, X, ArrowRight, BrainCircuit,
+  Check, ShieldAlert, Sparkles, Scissors, X, BrainCircuit,
 } from "lucide-react";
 import { C } from "../theme.js";
 import { roadWindows, roadCurrent, roadSeedSubs, seedConcerns, intelligenceSignals } from "../data/mockData.js";
@@ -17,8 +17,8 @@ const css = `
 .wr-root{font-family:'Inter',system-ui,sans-serif;color:${C.ink};}
 .wr-root *{box-sizing:border-box;}
 .wr-serif{font-family:'Inter',system-ui,sans-serif;font-weight:700;letter-spacing:-.02em;}
-.wr-mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
-.wr-eyebrow{font-family:'IBM Plex Mono',ui-monospace,monospace;text-transform:uppercase;
+.wr-mono{font-family:'Lora',serif;}
+.wr-eyebrow{font-family:'Lora',serif;text-transform:uppercase;
   letter-spacing:.16em;font-size:10px;font-weight:600;color:${C.stone};}
 .wr-panel{background:${C.surface};border:1.5px solid ${C.border};border-radius:3px;}
 .wr-tag{display:inline-flex;align-items:center;gap:6px;border:1px solid ${C.line};border-radius:2px;
@@ -56,7 +56,6 @@ const css = `
 .wr-page{max-width:1180px;margin:0 auto;padding:26px 24px 6px;}
 .wr-road-wrap{max-width:1180px;margin:0 auto;padding:18px 24px 0;}
 .wr-content{max-width:1180px;margin:0 auto;padding:18px 24px 40px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;}
-.wr-cta-wrap{max-width:1180px;margin:0 auto;padding:0 24px 48px;}
 .wr-headrow{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
 .wr-road-svg{min-width:900px;}
 .wr-sidebar{display:grid;gap:18px;align-content:start;}
@@ -64,7 +63,6 @@ const css = `
   .wr-page{padding:20px 14px 6px;}
   .wr-road-wrap{padding:14px 14px 0;}
   .wr-content{padding:14px 14px 28px;grid-template-columns:1fr!important;}
-  .wr-cta-wrap{padding:0 14px 32px;}
   .wr-headrow{display:grid;grid-template-columns:1fr;gap:10px;}
   .wr-headrow > div{width:100%;justify-content:space-between;}
   .wr-meter{width:100%;min-width:120px;}
@@ -73,7 +71,6 @@ const css = `
   .wr-slot{padding:14px;}
   .wr-btn{width:100%;justify-content:center;min-height:42px;}
   .wr-video > div{padding:16px!important;}
-  .wr-cta-wrap button{padding:18px 16px!important;align-items:flex-start!important;}
 }
 `;
 
@@ -91,7 +88,7 @@ const nodes = roadWindows.map((w, i) => {
   return { ...w, x, y: BASE_Y, idx: i };
 });
 
-export default function PatientRoad({ setView }) {
+export default function PatientRoad() {
   const [sel, setSel] = useState(roadCurrent);
   const [subs, setSubs] = useState(roadSeedSubs);
   const [openSurvey, setOpenSurvey] = useState(false);
@@ -180,7 +177,7 @@ export default function PatientRoad({ setView }) {
                     </>
                   )}
                   <text x={n.x} y={BASE_Y + 32} textAnchor="middle" style={{ fontSize: 12, fontWeight: 700, fill: sel_ ? C.accent : C.ink, fontFamily: "Inter, sans-serif", letterSpacing: "-.01em" }}>{n.label}</text>
-                  <text x={n.x} y={BASE_Y + 46} textAnchor="middle" style={{ fontSize: 9, letterSpacing: ".14em", textTransform: "uppercase", fill: C.stone, fontFamily: "IBM Plex Mono, monospace", fontWeight: 500 }}>{n.dates}</text>
+                  <text x={n.x} y={BASE_Y + 46} textAnchor="middle" style={{ fontSize: 9, letterSpacing: ".14em", textTransform: "uppercase", fill: C.stone, fontFamily: "Lora, serif", fontWeight: 500 }}>{n.dates}</text>
                 </g>
               );
             })}
@@ -337,25 +334,6 @@ export default function PatientRoad({ setView }) {
             <div className="wr-eyebrow" style={{ marginTop: 8, textAlign: "center" }}>typically answered within 1 business day</div>
           </div>
         </div>
-      </div>
-
-      <div className="wr-cta-wrap">
-        <button onClick={() => setView && setView("journey")} style={{
-          width: "100%", appearance: "none", cursor: "pointer", border: 0, borderRadius: 3,
-          padding: "22px 26px", background: `linear-gradient(120deg, ${C.bark}, ${C.night2})`, color: C.paper,
-          fontFamily: "Inter, sans-serif", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16,
-        }}>
-          <span style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <span style={{ width: 44, height: 44, borderRadius: 2, background: "rgba(255,255,255,.14)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-              <Square size={18} color={C.accent} />
-            </span>
-            <span style={{ textAlign: "left" }}>
-              <span style={{ display: "block", fontFamily: "Inter, system-ui, sans-serif", fontSize: 20, fontWeight: 700 }}>Open your Journey Snapshot</span>
-              <span style={{ display: "block", fontSize: 13, color: "rgba(255,255,255,.72)", marginTop: 2 }}>Your shareable story, visit summary, progress, and matched benchmark</span>
-            </span>
-          </span>
-          <ArrowRight size={24} color={C.paper} />
-        </button>
       </div>
 
       {video && (

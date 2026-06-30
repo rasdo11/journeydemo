@@ -10,8 +10,8 @@ const css = `
 .rp-root{font-family:'Inter',system-ui,sans-serif;color:${C.ink};}
 .rp-root *{box-sizing:border-box;}
 .rp-serif{font-family:'Inter',system-ui,sans-serif;font-weight:700;letter-spacing:-.02em;}
-.rp-mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
-.rp-eyebrow{font-family:'IBM Plex Mono',ui-monospace,monospace;text-transform:uppercase;
+.rp-mono{font-family:'Lora',serif;}
+.rp-eyebrow{font-family:'Lora',serif;text-transform:uppercase;
   letter-spacing:.16em;font-size:10px;font-weight:600;color:${C.stone};}
 .rp-tag{display:inline-flex;align-items:center;gap:6px;border:1px solid ${C.line};border-radius:2px;
   padding:4px 10px;font-size:11px;color:${C.stone};background:${C.surface};}
@@ -34,16 +34,16 @@ const css = `
 .rp-row:focus-visible{outline:2px solid ${C.accent};outline-offset:-2px;}
 .rp-av{width:38px;height:38px;border-radius:2px;background:${C.bark};color:#fff;
   display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;
-  font-family:'IBM Plex Mono',monospace;letter-spacing:.04em;}
+  font-family:'Lora',serif;letter-spacing:.04em;}
 .rp-id{display:block;font-size:13.5px;font-weight:700;color:${C.bark};letter-spacing:-.01em;}
 .rp-meta{display:block;font-size:11px;color:${C.stone};margin-top:2px;}
 .rp-right-col{display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
-.rp-chip{font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.1em;
+.rp-chip{font-family:'Lora',serif;text-transform:uppercase;letter-spacing:.1em;
   font-size:9px;font-weight:600;padding:3px 7px;border-radius:2px;white-space:nowrap;border:1px solid transparent;}
 .rp-chip.off{background:${C.bark};color:#fff;}
 .rp-chip.watch{background:transparent;color:${C.stone};border-color:${C.line};}
 .rp-chip.on-track{background:${C.accent};color:${C.bark};}
-.rp-dev{font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:600;color:${C.bark};}
+.rp-dev{font-family:'Lora',serif;font-size:12.5px;font-weight:600;color:${C.bark};}
 
 /* detail */
 .rp-block-head{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
@@ -63,7 +63,7 @@ const css = `
 }
 `;
 
-const tick = { fontSize: 11, fontFamily: "IBM Plex Mono, monospace", fill: C.stone };
+const tick = { fontSize: 11, fontFamily: "Lora, serif", fill: C.stone };
 const TIER_RANK = { "off-trajectory": 0, watch: 1, "on-track": 2 };
 const TIER_LABEL = { "off-trajectory": "Off-trajectory", watch: "Watch", "on-track": "On-track" };
 
@@ -112,12 +112,12 @@ export default function RiskPanel() {
         </h1>
         <p style={{ fontSize: 14, color: C.stone, maxWidth: 720, lineHeight: 1.55, margin: 0 }}>
           The recovery-risk model flags patients deviating from their expected 12-month continence
-          trajectory — for clinician review, not automated action.
+          trajectory, for clinician review, not automated action.
         </p>
       </div>
 
       <div className="rp-content">
-        {/* LEFT — the queue */}
+        {/* LEFT: the queue */}
         <div className="rp-panel" style={{ overflow: "hidden", alignSelf: "start" }}>
           <div className="rp-queuehead">
             <ShieldAlert size={16} color={C.bark} />
@@ -143,7 +143,7 @@ export default function RiskPanel() {
           ))}
         </div>
 
-        {/* RIGHT — selected-patient detail */}
+        {/* RIGHT: selected-patient detail */}
         <div className="rp-right">
           {/* 1. trajectory chart */}
           <div className="rp-panel" style={{ padding: 20 }}>
@@ -165,7 +165,7 @@ export default function RiskPanel() {
                   <CartesianGrid stroke={C.line} vertical={false} />
                   <XAxis dataKey="t" tick={tick} axisLine={{ stroke: C.line }} tickLine={false} />
                   <YAxis domain={[0, 100]} tick={tick} axisLine={false} tickLine={false}
-                    label={{ value: "% pad-free", angle: -90, position: "insideLeft", offset: 16, style: { fontSize: 10, fontFamily: "IBM Plex Mono, monospace", fill: C.stone, letterSpacing: ".08em" } }} />
+                    label={{ value: "% pad-free", angle: -90, position: "insideLeft", offset: 16, style: { fontSize: 10, fontFamily: "Lora, serif", fill: C.stone, letterSpacing: ".08em" } }} />
                   <Tooltip
                     contentStyle={{ border: `1px solid ${C.bark}`, borderRadius: 2, fontSize: 12, fontFamily: "Inter, sans-serif" }}
                     formatter={(v, name) => {

@@ -30,10 +30,14 @@ Fixed order, defined by `STEPS` in `src/components/Nav.jsx`:
    that IDENTIFIES at-risk patients plus a clinician workflow. It does not direct
    treatment.
 
-**Parked (not in the walkthrough):** `src/views/JourneySnapshot.jsx` is a
-consumer/patient-experience preview kept in the repo but removed from `STEPS`/
-`VIEWS`. It is NOT part of the research demo. Do not re-add it to the nav without
-first removing its grade/percentile/streak gamification (see "Honesty" below).
+**Off to the side (not in the walkthrough):** `src/views/JourneySnapshot.jsx` is
+a consumer/patient-experience concept preview. It is removed from `STEPS`
+(`Nav.jsx`) and is NOT one of the four research-aim steps, but it IS mapped in
+`VIEWS` (`App.jsx`) and reachable via a small "Also worth a look" link in the
+app footer, by explicit product decision: it's worth showing reviewers and
+discussing where a consumer product might use it, just not as part of the grant
+walkthrough. Do not add it to `STEPS`. See "Honesty" below for the gamification
+exception that comes with keeping it reachable.
 
 ## Stack
 - React 18 + Vite 5, plain JavaScript/JSX (no TypeScript).
@@ -55,7 +59,9 @@ first removing its grade/percentile/streak gamification (see "Honesty" below).
   styles never collide: `eq-` (StatusQuo), `wr-` (PatientRoad), `wc-` (Surgeon),
   `rp-` (RiskPanel), `js-` (JourneySnapshot, parked), `nv-` (Nav). Keep this
   discipline if you add components.
-- **Fonts** (Inter / IBM Plex Mono) load once in `src/index.css`. Don't re-import.
+- **Fonts** (Inter / Lora) load once in `src/index.css`. Don't re-import.
+- **No em dashes ("—") in any copy.** Use periods, commas, or colons instead.
+  This applies to all user-visible strings and is a hard rule.
 - No browser storage (localStorage/sessionStorage) — keep state in React.
 
 ## Design language
@@ -65,7 +71,7 @@ white blocks encased in heavy near-black frames, sharp squared corners, NO drop
 shadows or organic shapes. One disciplined accent (`accent`, prostate-cancer-
 ribbon blue) for active / selected / primary-data states; everything else is
 near-black, paper, and gray. Geometric sans (Inter, bold weights, tight tracking)
-for headings; IBM Plex Mono — uppercase, tracked, small — for UI labels, steps
+for headings; Lora (serif) — uppercase, tracked, small — for UI labels, steps
 ("STEP 01"), and data callouts. The recovery "span" fills geometrically (square
 nodes filling with the accent) — it does NOT bloom or use a branch/leaf metaphor.
 No points, badges, letter grades, or competitive percentile rankings anywhere
@@ -86,6 +92,12 @@ patient-facing.
   patients — it risks IRB concerns and reads as tone-deaf to a patient reviewer.
 - EPIC-26 is University-of-Michigan copyrighted but free to use with no license.
   Keep that note.
+- **Temporary, explicit exception:** `JourneySnapshot.jsx` keeps its letter
+  grade / percentile ring / streak language even though it's patient-facing,
+  by direct product decision (ethics review deferred, not skipped). It stays
+  out of `STEPS` and is reached only through the secondary footer link in
+  `App.jsx`, never the main walkthrough. Don't "fix" this by de-gamifying it
+  or by promoting it into `STEPS` without checking with the product owner first.
 
 ## Common tasks
 - **Change the patient / numbers:** edit `src/data/mockData.js`.

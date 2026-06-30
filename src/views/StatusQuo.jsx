@@ -10,8 +10,8 @@ const css = `
 .eq-root{font-family:'Inter',system-ui,sans-serif;color:${C.ink};}
 .eq-root *{box-sizing:border-box;}
 .eq-serif{font-family:'Inter',system-ui,sans-serif;font-weight:700;letter-spacing:-.02em;}
-.eq-mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
-.eq-eyebrow{font-family:'IBM Plex Mono',ui-monospace,monospace;text-transform:uppercase;
+.eq-mono{font-family:'Lora',serif;}
+.eq-eyebrow{font-family:'Lora',serif;text-transform:uppercase;
   letter-spacing:.16em;font-size:10px;font-weight:600;color:${C.stone};}
 .eq-seg{display:inline-flex;background:${C.mist};border-radius:2px;padding:4px;gap:4px;}
 .eq-seg button{appearance:none;border:0;cursor:pointer;border-radius:2px;padding:8px 16px;font-size:13px;
@@ -40,7 +40,7 @@ const css = `
 .eq-opt:hover{border-color:${C.moss};}
 .eq-opt.sel{background:${C.canopy};border-color:${C.canopy};color:#fff;}
 .eq-opt:focus-visible{outline:2px solid ${C.clay};outline-offset:2px;}
-.eq-blockhead{font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.16em;
+.eq-blockhead{font-family:'Lora',serif;text-transform:uppercase;letter-spacing:.16em;
   font-size:11px;color:${C.clayDeep};margin:26px 0 2px;}
 .eq-scorebar{height:8px;border-radius:6px;background:${C.mist};overflow:hidden;}
 .eq-scorefill{height:100%;border-radius:6px;}
@@ -48,7 +48,7 @@ const css = `
 .eq-fade{animation:eqf .35s ease;}
 @keyframes eqf{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:none;}}
 @media (prefers-reduced-motion:reduce){.eq-fade{animation:none;}.eq-seg button,.eq-opt{transition:none;}}
-.eq-th{text-align:left;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.1em;
+.eq-th{text-align:left;font-family:'Lora',serif;text-transform:uppercase;letter-spacing:.1em;
   font-size:10px;color:${C.stone};padding:8px 10px;font-weight:500;}
 .eq-td{padding:11px 10px;font-size:13px;border-top:1px solid ${C.line};}
 .eq-page{max-width:1160px;margin:0 auto;padding:26px 24px 8px;}
@@ -77,7 +77,7 @@ const css = `
 }
 `;
 
-const tickStyle = { fontSize: 11, fontFamily: "IBM Plex Mono, monospace", fill: C.stone };
+const tickStyle = { fontSize: 11, fontFamily: "Lora, serif", fill: C.stone };
 
 export default function StatusQuo() {
   const [view, setView] = useState("patient");

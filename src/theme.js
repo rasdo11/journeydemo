@@ -37,4 +37,4 @@ export const C = {
 };
 
 export const fontSans = "'Inter',system-ui,sans-serif";
-export const fontMono = "'IBM Plex Mono',ui-monospace,monospace";
+export const fontMono = "'Lora',serif";

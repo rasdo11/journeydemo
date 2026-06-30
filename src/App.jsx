@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import Nav, { STEPS } from "./components/Nav.jsx";
 import StatusQuo from "./views/StatusQuo.jsx";
 import PatientRoad from "./views/PatientRoad.jsx";
 import Surgeon from "./views/Surgeon.jsx";
 import RiskPanel from "./views/RiskPanel.jsx";
+import JourneySnapshot from "./views/JourneySnapshot.jsx";
 import { C } from "./theme.js";
 
-const VIEWS = { status: StatusQuo, patient: PatientRoad, surgeon: Surgeon, risk: RiskPanel };
+// "journey" is intentionally absent from STEPS (Nav.jsx) so it stays out of the
+// top walkthrough nav. It's still mapped here so the footer link below can reach it.
+const VIEWS = { status: StatusQuo, patient: PatientRoad, surgeon: Surgeon, risk: RiskPanel, journey: JourneySnapshot };
 
 const appCss = `
 .app-pager{border-top:1px solid ${C.line};background:${C.surface};}
@@ -19,6 +22,16 @@ const appCss = `
   .app-pager-inner{padding:12px 14px;display:grid;grid-template-columns:1fr;gap:8px;}
   .app-pager-inner > span{display:none;}
   .app-nav-btn{width:100%;justify-content:center;min-height:44px;}
+}
+.app-concept{border-top:1px solid ${C.line};background:${C.paper};}
+.app-concept-inner{max-width:1200px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:center;}
+.app-concept-link{appearance:none;cursor:pointer;background:transparent;border:0;color:${C.stone};
+  font-family:'Lora',serif;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:7px;padding:4px;}
+.app-concept-link:hover{color:${C.bark};}
+.app-concept-link:focus-visible{outline:2px solid ${C.accent};outline-offset:2px;}
+@media (max-width:720px){
+  .app-concept-inner{padding:11px 14px;text-align:center;}
 }
 `;
 
@@ -49,6 +62,17 @@ export default function App() {
                 Next: {next.label} <ChevronRight size={16} />
               </button>
             ) : <span />}
+          </div>
+        </div>
+      )}
+
+      {/* secondary track: not one of the four research-aim steps, reachable only from here */}
+      {view !== "journey" && (
+        <div className="app-concept">
+          <div className="app-concept-inner">
+            <button onClick={() => setView("journey")} className="app-concept-link">
+              Also worth a look: Journey Snapshot, a consumer concept preview <ArrowUpRight size={13} />
+            </button>
           </div>
         </div>
       )}

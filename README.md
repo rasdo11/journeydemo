@@ -1,10 +1,15 @@
-# JourneySpan — demo site
+# JourneySpan demo site
 
-An interactive demo of JourneySpan, walked through in three views:
+An interactive demo of JourneySpan, walked through in four views, each mapped to
+one research aim:
 
-1. **Status quo** — the EPIC-26 questionnaire as it works today (the simple baseline)
-2. **Patient experience** — the recovery span: multimodal, optional, non-linear submissions
-3. **Surgeon & post-care** — the operative note linked to patient recovery
+1. **Status quo**: the EPIC-26 questionnaire as it works today (the baseline problem)
+2. **Patient experience** (Aim 2): the recovery span, with multimodal, optional, non-linear submissions across 0 to 12 months
+3. **Surgeon & post-care** (Aim 1): the operative note linked to the recovery domains it may be associated with
+4. **Clinician review** (Aim 3): a recovery-risk model that flags patients deviating from their expected continence trajectory, for clinician review only
+
+A fifth view, **Journey Snapshot** (`src/views/JourneySnapshot.jsx`), is parked as
+a consumer/patient preview and is intentionally not part of the research walkthrough.
 
 All data is synthetic. This is a prototype for demonstration, not a clinical product.
 
@@ -19,7 +24,7 @@ Go to **https://nodejs.org** and download the **LTS** version. Install it like a
 This gives you the `npm` command the project needs.
 
 ### 2. Open a terminal in this folder
-- **Mac:** right-click the `willow-demo` folder → "New Terminal at Folder"
+- **Mac:** right-click the `journeydemo` folder → "New Terminal at Folder"
 - **Windows:** open the folder, click the address bar, type `cmd`, press Enter
 
 ### 3. Install the project's pieces (one time)
@@ -62,14 +67,14 @@ Start by reading `CLAUDE.md` — it orients Claude Code to how the project is bu
 
 **The one file you'll touch most:** `src/data/mockData.js`.
 Every patient detail, score, question, road window, and operative note lives there.
-Change the data there and all three views update.
+Change the data there and all four views update.
 
 ---
 
 ## What's where
 
 ```
-willow-demo/
+journeydemo/
 ├─ index.html                 the page shell
 ├─ package.json               project + dependencies
 ├─ vite.config.js             build config (leave as-is)
@@ -81,11 +86,13 @@ willow-demo/
    ├─ index.css               fonts + page background
    ├─ theme.js                the JourneySpan colors (one place)
    ├─ components/
-   │  └─ Nav.jsx              the top navigation (the 3 demo steps)
+   │  └─ Nav.jsx              the top navigation (the 4 demo steps)
    ├─ data/
    │  └─ mockData.js          ★ all the synthetic data, in one file
    └─ views/
-      ├─ StatusQuo.jsx        view 1 — EPIC-26 today
-      ├─ PatientRoad.jsx      view 2 — the recovery span
-      └─ Surgeon.jsx          view 3 — operative note → recovery
+      ├─ StatusQuo.jsx        view 1: EPIC-26 today
+      ├─ PatientRoad.jsx      view 2: the recovery span (Aim 2)
+      ├─ Surgeon.jsx          view 3: operative note linked to recovery (Aim 1)
+      ├─ RiskPanel.jsx        view 4: clinician recovery-risk review (Aim 3)
+      └─ JourneySnapshot.jsx  parked: consumer preview, not in the walkthrough
 ```

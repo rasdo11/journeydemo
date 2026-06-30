@@ -2,19 +2,29 @@
 
 ## What this is
 A single-page demo of JourneySpan, a patient-reported-outcomes platform for prostate-cancer
-(radical prostatectomy) recovery. It presents three views in a fixed narrative order:
+(radical prostatectomy) recovery. It presents four views in a fixed narrative order, each
+mapped to one research aim:
 
 1. **Status quo** (`src/views/StatusQuo.jsx`) — the EPIC-26 instrument as used today.
    Shows the patient form (faithful 26 items, live 0–100 domain scoring) and the
    clinician output (5 domains at 5 timepoints). Purpose: establish how limited the
    current state is.
-2. **Patient experience** (`src/views/PatientRoad.jsx`) — the "recovery road": a willow
-   branch that leafs into color as the patient makes optional, multimodal, non-linear
-   submissions (photo / voice / survey) within time windows. Includes milestone videos
-   and a non-emergency concern inbox.
-3. **Surgeon & post-care** (`src/views/Surgeon.jsx`) — the EMR operative note (baseline)
-   with optional My Intuitive / Touch Surgery imports, and an interactive link from each
-   surgical decision to the recovery domain it shaped, plus a cohort correlation.
+2. **Patient experience** (`src/views/PatientRoad.jsx`) — **Aim 2.** The recovery "span":
+   optional, multimodal, non-linear submissions (photo / voice / survey) within time
+   windows, densest in the first 90 days and thinning through month 12. Includes
+   milestone videos and a non-emergency concern inbox.
+3. **Surgeon & post-care** (`src/views/Surgeon.jsx`) — **Aim 1.** The EMR operative note
+   (baseline) with optional My Intuitive / Touch Surgery imports, and an interactive link
+   from each surgical decision to the recovery domain it may be associated with, plus a
+   cohort pattern.
+4. **Clinician review** (`src/views/RiskPanel.jsx`) — **Aim 3.** A recovery-risk model
+   that flags patients deviating from their expected 12-month continence trajectory, with
+   per-patient explainable drivers and a recommended review action. It flags for clinician
+   review only; it does not direct treatment.
+
+**Parked (not in the walkthrough):** `src/views/JourneySnapshot.jsx` is a consumer/patient
+preview kept in the repo but removed from `STEPS` / `VIEWS`. It is not part of the research
+demo.
 
 ## Stack
 - React 18 + Vite 5, plain JavaScript/JSX (no TypeScript).
@@ -29,8 +39,8 @@ A single-page demo of JourneySpan, a patient-reported-outcomes platform for pros
 - **Colors come from `src/theme.js`** (the `C` object). Don't introduce new hex codes in
   components; add to `theme.js` if needed.
 - **Each view scopes its CSS** in a `<style>` block using a unique class prefix so styles
-  never collide: `eq-` (StatusQuo), `wr-` (PatientRoad), `wc-` (Surgeon), `nv-` (Nav).
-  Keep that discipline if you add components.
+  never collide: `eq-` (StatusQuo), `wr-` (PatientRoad), `wc-` (Surgeon), `rp-` (RiskPanel),
+  `js-` (JourneySnapshot, parked), `nv-` (Nav). Keep that discipline if you add components.
 - **Fonts** (Inter / Lora) load once in `src/index.css`. Don't re-import.
 - No browser storage (localStorage/sessionStorage) — keep state in React.
 
@@ -46,8 +56,11 @@ headings; Lora (serif) — uppercase, tracked, small — for UI labels, steps
 nodes filling with the accent) rather than blooming. No points/badges.
 
 ## Honesty
-Everything is synthetic and labeled as such. The surgical-decision → recovery correlations
-are illustrative, not validated causal claims. EPIC-26 is University-of-Michigan
+Everything is synthetic and labeled as such. The surgical-decision → recovery links and the
+recovery-risk model are illustrative and hypothesis-generating, not validated causal claims;
+keep the "may be associated with" / "internally validated, illustrative" / "not validated"
+language intact. The risk model flags for clinician review only — never present it as
+diagnosing, directing treatment, or assigning intervention. EPIC-26 is University-of-Michigan
 copyrighted but free to use with no license. Keep these disclaimers intact.
 
 ## Common tasks
@@ -56,7 +69,8 @@ copyrighted but free to use with no license. Keep these disclaimers intact.
 - **Add a surgical decision link:** add to `decisions` in `mockData.js` (give it `target`
   domain keys, a `cohort` block, and an optional `phaseMatch` string).
 - **Reorder or rename the demo steps:** edit `STEPS` in `src/components/Nav.jsx`.
-- **Add a fourth view:** create `src/views/NewView.jsx`, add it to `VIEWS` and `STEPS`.
+- **Add a view:** create `src/views/NewView.jsx`, add it to `VIEWS` and `STEPS`, and give
+  it a unique CSS prefix.
 
 ## Run / build
 - `npm install` then `npm run dev` (local), `npm run build` (production to `dist/`).

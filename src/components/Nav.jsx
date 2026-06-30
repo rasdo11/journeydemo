@@ -2,10 +2,10 @@ import { C } from "../theme.js";
 
 // The demo's narrative order. Edit labels/order here.
 export const STEPS = [
-  { id: "status", n: "01", label: "Status quo", hint: "today's tool" },
-  { id: "patient", n: "02", label: "Patient experience", hint: "the recovery span" },
-  { id: "journey", n: "03", label: "Journey Snapshot", hint: "the patient record" },
-  { id: "surgeon", n: "04", label: "Surgeon & post-care", hint: "the OR-to-recovery link" },
+  { id: "status",  n: "01", label: "Status quo",          hint: "today's tool" },
+  { id: "patient", n: "02", label: "Patient experience",  hint: "the recovery span" },
+  { id: "surgeon", n: "03", label: "Surgeon & post-care", hint: "the OR-to-recovery link" },
+  { id: "risk",    n: "04", label: "Clinician review",    hint: "the recovery-risk model" },
 ];
 
 const navCss = `

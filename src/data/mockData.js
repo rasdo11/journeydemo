@@ -336,3 +336,94 @@ export const recommendations = [
   { tag: "Energy", title: "Stretch your walks toward 25 minutes", body: "Top finishers were back to 25-minute daily walks by week four. You're close, and a little more lifts both energy and mood." },
   { tag: "Consistency", title: "Keep your logging streak alive", body: "You log five-plus days a week, better than most. Consistent logging is the single habit most tied to a strong recovery." },
 ];
+
+// ── CLINICIAN RECOVERY-RISK MODEL (Aim 3) ────────────────────────────────
+// Synthetic cohort for the clinician review queue. The model flags patients
+// whose 12-month continence recovery is deviating from their expected
+// trajectory. It IDENTIFIES for review; it does not direct treatment.
+
+// What the illustrative model combines — mirrors the Aim 3 input set verbatim
+// so a reviewer maps the demo to the aim instantly.
+export const riskModelCard = {
+  primaryOutcome: "Urinary continence recovery at 12 months",
+  inputs: [
+    "Baseline characteristics (age, baseline continence, comorbidities)",
+    "Operative factors (nerve-sparing, reconstruction, urethral length, EBL)",
+    "Longitudinal PROMs (EPIC-26 at clinical intervals)",
+    "Short digital recovery assessments (pad counts, triggers, energy)",
+    "Multimodal signals (voice distress language, photo-derived pad burden)",
+  ],
+  validation: "Internally validated (illustrative). Apparent AUC 0.81; optimism-corrected via bootstrap resampling.",
+  boundary: "Flags patients for clinician review only. Does not diagnose, direct treatment, or assign intervention. Testing whether intervention changes outcomes would require a subsequent prospective trial.",
+};
+
+// Expected continence band (% pad-free) the model compares each patient against.
+export const continenceBand = [
+  { t: "Wk 0",  lo: 0,  hi: 10, exp: 3 },
+  { t: "Wk 4",  lo: 22, hi: 52, exp: 34 },
+  { t: "Wk 8",  lo: 38, hi: 68, exp: 52 },
+  { t: "Mo 3",  lo: 52, hi: 80, exp: 66 },
+  { t: "Mo 6",  lo: 64, hi: 88, exp: 78 },
+  { t: "Mo 12", lo: 74, hi: 94, exp: 86 },
+];
+
+// tier: "on-track" | "watch" | "off-trajectory". deviation = pts vs expected.
+// points = the patient's observed % pad-free at the timepoints they've reached.
+export const riskCohort = [
+  {
+    id: "PT-0377", initials: "DW", age: 70, technique: "Non nerve-sparing",
+    window: "Wk 4–6", tier: "off-trajectory", deviation: -22,
+    points: [{ t: "Wk 0", you: 1 }, { t: "Wk 4", you: 14 }, { t: "Wk 8", you: 19 }],
+    drivers: [
+      "Continence far below expected band since Wk 4",
+      "Voice signal: rising distress and isolation language",
+      "Engagement dropped Wk 4–6 (two windows missed)",
+      "Pad count not declining (still 3+/day)",
+    ],
+    review: "Surface for proactive outreach. Recovery deviating early and multimodal signals corroborate. Clinician decision required — consider early PT referral and a check-in call.",
+  },
+  {
+    id: "PT-0392", initials: "RC", age: 67, technique: "Unilateral NS",
+    window: "Wk 6–8", tier: "watch", deviation: -9,
+    points: [{ t: "Wk 0", you: 2 }, { t: "Wk 4", you: 24 }, { t: "Wk 8", you: 38 }],
+    drivers: [
+      "Below expected band since Wk 4",
+      "Pad count plateaued at 3/day",
+      "Survey: rising nocturia",
+    ],
+    review: "Flag for review at next visit. Consider earlier pelvic-floor PT referral if no improvement by Mo 3.",
+  },
+  {
+    id: "PT-0361", initials: "HK", age: 64, technique: "Unilateral NS",
+    window: "Wk 6–8", tier: "watch", deviation: -7,
+    points: [{ t: "Wk 0", you: 2 }, { t: "Wk 4", you: 30 }, { t: "Wk 8", you: 44 }],
+    drivers: [
+      "Slightly below expected band",
+      "Good engagement (logs consistently)",
+      "Photo: moderate pad burden persisting",
+    ],
+    review: "Monitor. Re-check at Mo 3; no referral yet.",
+  },
+  {
+    id: "PT-0418", initials: "JM", age: 61, technique: "Bilateral NS",
+    window: "Wk 4–6", tier: "on-track", deviation: 6,
+    points: [{ t: "Wk 0", you: 3 }, { t: "Wk 4", you: 40 }, { t: "Wk 8", you: 56 }],
+    drivers: [
+      "Tracking above expected band",
+      "High engagement (5+ logs/week)",
+      "Voice signal: improving week-over-week",
+    ],
+    review: "No action. Continue standard follow-up.",
+  },
+  {
+    id: "PT-0405", initials: "TS", age: 58, technique: "Bilateral NS",
+    window: "Mo 3", tier: "on-track", deviation: 3,
+    points: [{ t: "Wk 0", you: 4 }, { t: "Wk 4", you: 46 }, { t: "Mo 3", you: 70 }],
+    drivers: [
+      "Within expected band",
+      "Consistent logging",
+      "No adverse voice signals",
+    ],
+    review: "No action. On expected arc.",
+  },
+];

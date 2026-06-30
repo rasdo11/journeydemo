@@ -51,6 +51,30 @@ const css = `
 .eq-th{text-align:left;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.1em;
   font-size:10px;color:${C.stone};padding:8px 10px;font-weight:500;}
 .eq-td{padding:11px 10px;font-size:13px;border-top:1px solid ${C.line};}
+.eq-page{max-width:1160px;margin:0 auto;padding:26px 24px 8px;}
+.eq-body{max-width:1160px;margin:0 auto;padding:22px 24px 40px;}
+.eq-foot{max-width:1160px;margin:0 auto;padding:0 24px 24px;}
+.eq-topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
+.eq-hero-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:18px;align-items:start;}
+.eq-main-grid{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:18px;}
+@media (max-width:720px){
+  .eq-page{padding:20px 14px 6px;}
+  .eq-body{padding:16px 14px 28px;}
+  .eq-foot{padding:0 14px 20px;}
+  .eq-topbar{display:grid;grid-template-columns:1fr;gap:10px;}
+  .eq-tag{width:100%;justify-content:center;text-align:center;}
+  .eq-seg{width:100%;display:grid;grid-template-columns:1fr 1fr;}
+  .eq-seg button{padding:10px 8px;font-size:12px;}
+  .eq-hero-grid{grid-template-columns:1fr!important;gap:12px;}
+  .eq-main-grid{grid-template-columns:1fr!important;}
+  .eq-tl{padding-bottom:10px;}
+  .eq-stop{min-width:86px;}
+  .eq-panel{border-width:1.25px;}
+  .eq-q{padding:14px 0;}
+  .eq-opts{margin-left:0!important;}
+  .eq-opt{width:100%;justify-content:flex-start;text-align:left;}
+  .eq-th,.eq-td{padding:8px 6px;font-size:11.5px;}
+}
 `;
 
 const tickStyle = { fontSize: 11, fontFamily: "IBM Plex Mono, monospace", fill: C.stone };
@@ -60,8 +84,8 @@ export default function StatusQuo() {
   return (
     <div className="eq-root">
       <style>{css}</style>
-      <div style={{ maxWidth: 1160, margin: "0 auto", padding: "26px 24px 8px" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, flexWrap: "wrap", marginBottom: 14 }}>
+      <div className="eq-page">
+        <div className="eq-topbar">
           <span className="eq-tag">EPIC-26 · the status quo · synthetic data</span>
           <div className="eq-seg" role="tablist" aria-label="Choose a view">
             <button role="tab" aria-selected={view === "patient"} className={view === "patient" ? "on" : ""} onClick={() => setView("patient")}>What the patient gets</button>
@@ -70,7 +94,7 @@ export default function StatusQuo() {
         </div>
         <div className="eq-eyebrow">{view === "patient" ? "The survey, in a visual overview" : "The instrument's output, as actually read"}</div>
         {view === "patient" ? (
-          <div style={{ display: "grid", gridTemplateColumns: "minmax(0,2fr) minmax(260px,1fr)", gap: 18, alignItems: "start" }}>
+          <div className="eq-hero-grid">
             <div>
               <h1 className="eq-serif" style={{ fontSize: "clamp(23px,3.2vw,36px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-.025em", margin: "4px 0 10px", color: C.bark, maxWidth: 800 }}>
                 For many, the post-op patient experience doesn't begin for 8 weeks.
@@ -97,10 +121,10 @@ export default function StatusQuo() {
           </>
         )}
       </div>
-      <div style={{ maxWidth: 1160, margin: "0 auto", padding: "22px 24px 40px" }}>
+      <div className="eq-body">
         {view === "patient" ? <PatientView /> : <ClinicianView />}
       </div>
-      <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 24px 24px" }}>
+      <div className="eq-foot">
         <div style={{ fontSize: 11, color: C.stone, lineHeight: 1.6 }}>
           EPIC-26 developed at the University of Michigan; free to use, no license required. Timeline reflects the ICHOM localized
           prostate cancer standard set; trajectory and scores are synthetic, patterned on published radical-prostatectomy outcomes.
@@ -152,7 +176,7 @@ function PatientView() {
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) 270px", gap: 18 }}>
+      <div className="eq-main-grid">
         <div className="eq-panel" style={{ padding: "22px 24px" }}>
           {isSurvey ? (
             <>

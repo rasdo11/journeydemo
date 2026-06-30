@@ -49,6 +49,24 @@ const css = `
 .wc-select{appearance:none;border:1px solid ${C.line};background:${C.surface};
   color:${C.ink};border-radius:2px;padding:7px 12px;font-size:13px;font-family:'Inter',sans-serif;cursor:pointer;}
 .wc-empty{border:1px dashed ${C.line};border-radius:2px;padding:18px;text-align:center;background:${C.paper};}
+.wc-page{max-width:1200px;margin:0 auto;padding:26px 24px 8px;}
+.wc-headrow{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
+.wc-content{max-width:1200px;margin:0 auto;padding:18px 24px 40px;display:grid;grid-template-columns:340px minmax(0,1fr);gap:18px;align-items:start;}
+.wc-left,.wc-right{display:grid;gap:18px;}
+.wc-foot{max-width:1200px;margin:0 auto;padding:0 24px 24px;}
+@media (max-width:860px){
+  .wc-page{padding:20px 14px 6px;}
+  .wc-headrow{display:grid;grid-template-columns:1fr;gap:10px;}
+  .wc-select{width:100%;min-height:42px;}
+  .wc-content{padding:14px 14px 30px;grid-template-columns:1fr!important;}
+  .wc-foot{padding:0 14px 22px;}
+  .wc-panel{border-width:1.25px;padding:16px!important;}
+  .wc-chip{min-height:58px;}
+  .wc-btn{width:100%;justify-content:center;min-height:42px;}
+  .wc-row{font-size:12.5px;gap:8px;}
+  .wc-key{min-width:0;}
+  .wc-val{max-width:52%;overflow-wrap:anywhere;}
+}
 `;
 
 const tick = { fontSize: 11, fontFamily: "IBM Plex Mono, monospace", fill: C.stone };
@@ -62,8 +80,8 @@ export default function Surgeon() {
   return (
     <div className="wc-root">
       <style>{css}</style>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "26px 24px 8px" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, flexWrap: "wrap", marginBottom: 14 }}>
+      <div className="wc-page">
+        <div className="wc-headrow">
           <span className="wc-tag">operative → recovery · prototype</span>
           <select className="wc-select" defaultValue="0418" aria-label="Select case">
             <option value="0418">{patient.id} · {patient.age}M · RALP · {patient.surgeon}</option>
@@ -80,9 +98,9 @@ export default function Surgeon() {
         </p>
       </div>
 
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "18px 24px 40px", display: "grid", gridTemplateColumns: "340px minmax(0,1fr)", gap: 18, alignItems: "start" }}>
+      <div className="wc-content">
         {/* LEFT */}
-        <div style={{ display: "grid", gap: 18 }}>
+        <div className="wc-left">
           {/* op note: baseline */}
           <div className="wc-panel" style={{ padding: 20 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
@@ -169,7 +187,7 @@ export default function Surgeon() {
         </div>
 
         {/* RIGHT */}
-        <div style={{ display: "grid", gap: 18 }}>
+        <div className="wc-right">
           <div className="wc-panel" style={{ padding: 20 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
               <GitBranch size={16} color={C.clayDeep} /><span className="wc-eyebrow">Surgical decisions: select to trace the link</span>
@@ -266,7 +284,7 @@ export default function Surgeon() {
         </div>
       </div>
 
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px 24px" }}>
+      <div className="wc-foot">
         <div style={{ fontSize: 11, color: C.stone, lineHeight: 1.6 }}>
           Baseline source: structured operative note from the EMR. Optional imports: surgeon-initiated case export from My Intuitive;
           Touch Surgery Enterprise video via its EMR connectivity. Deeper kinematic / Case Insights data would come via a research

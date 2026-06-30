@@ -28,6 +28,17 @@ const navCss = `
 .nv-label{font-size:13px;font-weight:700;line-height:1.1;letter-spacing:-.01em;}
 .nv-hint{font-size:9.5px;opacity:.7;font-family:'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-weight:500;}
 @media (prefers-reduced-motion:reduce){.nv-step{transition:none;}}
+@media (max-width:720px){
+  .nv-bar{position:sticky;}
+  .nv-wrap{padding:0 14px;gap:0;display:block;}
+  .nv-brand{padding:13px 0 11px;}
+  .nv-name{font-size:17px;}
+  .nv-steps{margin:0 -14px;padding:0 14px 12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
+  .nv-step{flex:0 0 158px;min-height:58px;padding:0 12px;border:1px solid rgba(255,255,255,.14);border-left:1px solid rgba(255,255,255,.14);scroll-snap-align:start;}
+  .nv-step + .nv-step{margin-left:8px;}
+  .nv-step.on{border-color:${C.accent};}
+  .nv-hint{display:none!important;}
+}
 `;
 
 function Mark() {

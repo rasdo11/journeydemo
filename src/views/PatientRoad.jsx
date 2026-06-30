@@ -53,6 +53,28 @@ const css = `
 .wr-area{width:100%;border:1px solid ${C.line};border-radius:2px;padding:11px 12px;font-size:13px;
   font-family:'Inter',sans-serif;resize:vertical;min-height:74px;background:${C.surface};color:${C.ink};}
 .wr-area:focus{outline:2px solid ${C.clay};outline-offset:1px;}
+.wr-page{max-width:1180px;margin:0 auto;padding:26px 24px 6px;}
+.wr-road-wrap{max-width:1180px;margin:0 auto;padding:18px 24px 0;}
+.wr-content{max-width:1180px;margin:0 auto;padding:18px 24px 40px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;}
+.wr-cta-wrap{max-width:1180px;margin:0 auto;padding:0 24px 48px;}
+.wr-headrow{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
+.wr-road-svg{min-width:900px;}
+.wr-sidebar{display:grid;gap:18px;align-content:start;}
+@media (max-width:760px){
+  .wr-page{padding:20px 14px 6px;}
+  .wr-road-wrap{padding:14px 14px 0;}
+  .wr-content{padding:14px 14px 28px;grid-template-columns:1fr!important;}
+  .wr-cta-wrap{padding:0 14px 32px;}
+  .wr-headrow{display:grid;grid-template-columns:1fr;gap:10px;}
+  .wr-headrow > div{width:100%;justify-content:space-between;}
+  .wr-meter{width:100%;min-width:120px;}
+  .wr-road-svg{min-width:680px;height:132px;}
+  .wr-panel{border-width:1.25px;}
+  .wr-slot{padding:14px;}
+  .wr-btn{width:100%;justify-content:center;min-height:42px;}
+  .wr-video > div{padding:16px!important;}
+  .wr-cta-wrap button{padding:18px 16px!important;align-items:flex-start!important;}
+}
 `;
 
 const MODE = {
@@ -106,8 +128,8 @@ export default function PatientRoad({ setView }) {
   return (
     <div className="wr-root">
       <style>{css}</style>
-      <div style={{ maxWidth: 1180, margin: "0 auto", padding: "26px 24px 6px" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, flexWrap: "wrap", marginBottom: 14 }}>
+      <div className="wr-page">
+        <div className="wr-headrow">
           <span className="wr-tag">recovery span · prototype</span>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <span className="wr-eyebrow">Your span · {totals.bloom}% signal visible</span>
@@ -124,9 +146,9 @@ export default function PatientRoad({ setView }) {
         </p>
       </div>
 
-      <div style={{ maxWidth: 1180, margin: "0 auto", padding: "18px 24px 0" }}>
+      <div className="wr-road-wrap">
         <div className="wr-panel" style={{ padding: "8px 8px 4px", overflowX: "auto" }}>
-          <svg viewBox={`0 0 ${VB_W} ${VB_H}`} width="100%" height="150" style={{ minWidth: 900 }} role="group" aria-label="Recovery span">
+          <svg className="wr-road-svg" viewBox={`0 0 ${VB_W} ${VB_H}`} width="100%" height="150" role="group" aria-label="Recovery span">
             {nodes.slice(0, -1).map((n, i) => {
               const m = nodes[i + 1]; const f = fillOf(n);
               const col = status(n.id) === "upcoming" ? C.bare : mix(C.bare, C.accent, f);
@@ -171,7 +193,7 @@ export default function PatientRoad({ setView }) {
         </div>
       </div>
 
-      <div style={{ maxWidth: 1180, margin: "0 auto", padding: "18px 24px 40px", display: "grid", gridTemplateColumns: "minmax(0,1fr) 320px", gap: 18 }}>
+      <div className="wr-content">
         <div className="wr-panel wr-fade" key={sel} style={{ padding: 24 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
             <div>
@@ -254,7 +276,7 @@ export default function PatientRoad({ setView }) {
           )}
         </div>
 
-        <div style={{ display: "grid", gap: 18, alignContent: "start" }}>
+        <div className="wr-sidebar">
           <div className="wr-panel" style={{ padding: 20 }}>
             <div className="wr-eyebrow" style={{ marginBottom: 10 }}>Your recovery so far</div>
             <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
@@ -317,7 +339,7 @@ export default function PatientRoad({ setView }) {
         </div>
       </div>
 
-      <div style={{ maxWidth: 1180, margin: "0 auto", padding: "0 24px 48px" }}>
+      <div className="wr-cta-wrap">
         <button onClick={() => setView && setView("journey")} style={{
           width: "100%", appearance: "none", cursor: "pointer", border: 0, borderRadius: 3,
           padding: "22px 26px", background: `linear-gradient(120deg, ${C.bark}, ${C.night2})`, color: C.paper,

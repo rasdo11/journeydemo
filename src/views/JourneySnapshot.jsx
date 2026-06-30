@@ -42,6 +42,24 @@ const css = `
 .js-fade{animation:jsf .4s ease;}
 @keyframes jsf{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
 @media (prefers-reduced-motion:reduce){.js-fade{animation:none;}.js-back{transition:none;}}
+.js-hero-top{max-width:980px;margin:0 auto;padding:20px 24px 0;}
+.js-hero-main{max-width:980px;margin:0 auto;padding:26px 24px 40px;display:flex;gap:28px;align-items:center;flex-wrap:wrap;}
+.js-content{max-width:980px;margin:0 auto;padding:32px 24px 56px;display:grid;gap:26px;}
+.js-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;}
+@media (max-width:720px){
+  .js-hero-top{padding:16px 14px 0;}
+  .js-hero-main{padding:20px 14px 30px;display:grid;grid-template-columns:1fr;gap:18px;}
+  .js-hero-main svg{width:100%;height:auto;}
+  .js-content{padding:22px 14px 34px;gap:18px;}
+  .js-panel{border-width:1.25px;padding:18px!important;}
+  .js-actions{display:grid;grid-template-columns:1fr;gap:8px;}
+  .js-action,.js-back{width:100%;justify-content:center;min-height:42px;}
+  .js-sectlabel{align-items:flex-start;}
+  .js-rec{padding:14px;}
+  .js-tl-item{gap:10px;}
+  .js-tl-year{width:48px;font-size:11px;}
+  .js-tl-rail{left:23px;}
+}
 `;
 
 const tick = { fontSize: 11, fontFamily: "IBM Plex Mono, monospace", fill: C.stone };
@@ -69,12 +87,12 @@ export default function JourneySnapshot({ setView }) {
 
       {/* hero */}
       <div style={{ background: `linear-gradient(135deg, ${C.bark} 0%, ${C.night2} 72%, ${C.accentInk} 100%)`, color: C.paper }}>
-        <div style={{ maxWidth: 980, margin: "0 auto", padding: "20px 24px 0" }}>
+        <div className="js-hero-top">
           <button className="js-back" onClick={() => setView && setView("patient")}>
             <ArrowLeft size={15} /> Back to my recovery span
           </button>
         </div>
-        <div style={{ maxWidth: 980, margin: "0 auto", padding: "26px 24px 40px", display: "flex", gap: 28, alignItems: "center", flexWrap: "wrap" }}>
+        <div className="js-hero-main">
           <svg viewBox="0 0 300 120" width="300" height="120" style={{ maxWidth: "100%" }} aria-hidden="true">
             <rect x="14" y="64" width="272" height="2" fill="rgba(255,255,255,.22)" />
             <rect x="14" y="64" width="150" height="2" fill={C.accent} />
@@ -92,7 +110,7 @@ export default function JourneySnapshot({ setView }) {
             <h1 className="js-serif" style={{ fontSize: "clamp(28px,4vw,44px)", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-.03em", margin: "8px 0 0" }}>
               {journey.heroName}, look how far you've come.
             </h1>
-            <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 18 }}>
+            <div className="js-actions">
               <button className="js-action"><Share2 size={15} /> Share with surgeon</button>
               <button className="js-action secondary"><FileDown size={15} /> Export recovery record</button>
             </div>
@@ -100,7 +118,7 @@ export default function JourneySnapshot({ setView }) {
         </div>
       </div>
 
-      <div style={{ maxWidth: 980, margin: "0 auto", padding: "32px 24px 56px", display: "grid", gap: 26 }}>
+      <div className="js-content">
 
         {/* grade */}
         <div className="js-panel js-fade" style={{ padding: 24, display: "flex", gap: 24, alignItems: "center", flexWrap: "wrap" }}>

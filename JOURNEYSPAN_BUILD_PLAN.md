@@ -207,18 +207,18 @@ cancer recovery as tone-deaf.
 
 ---
 
-## WORKSTREAM 4 — Finish the Willow → JourneySpan migration
+## WORKSTREAM 4 — Finish the JourneySpan rebrand
 
-- `index.html` — change `<title>Willow — recovery, measured the way it's lived</title>`
-  to `JourneySpan — recovery, measured the way it's lived`. Check for any other
-  "Willow" in meta tags or an `<h1>`.
-- `README.md` — replace `willow-demo` with `journeydemo` in the file tree and the
-  Mac/terminal instructions; replace any "willow branch" phrasing. Update the
-  "three views" description to the four-view research arc above and note that
-  Journey Snapshot is parked as a consumer preview.
-- `CLAUDE.md` — replace wholesale with the provided updated `CLAUDE.md`.
-- Repo-wide check: run a case-insensitive search for `willow` and fix any
-  remaining **user-visible** strings.
+- `index.html` — the `<title>` and any meta tags / `<h1>` carry the JourneySpan
+  brand (e.g. `JourneySpan: recovery, measured the way it is lived`). Confirm no
+  legacy brand name remains.
+- `README.md` — use `journeydemo` in the file tree and the Mac/terminal
+  instructions, and keep the project/branch phrasing on the JourneySpan brand.
+  Update the "three views" description to the four-view research arc above and
+  note that Journey Snapshot is parked as a consumer preview.
+- `CLAUDE.md` — keep it as the updated JourneySpan orientation doc.
+- Repo-wide check: run a case-insensitive search for the legacy brand name and
+  fix any remaining strings so only JourneySpan branding appears.
 - **GUARDRAIL — do NOT rename these:** the color-token aliases in `theme.js`
   (`canopy`, `bark`, `moss`, `leaf`, `clay`, `void`, `bare`). They are internal
   names already remapped to the blue accent system; renaming them touches every
@@ -233,6 +233,6 @@ cancer recovery as tone-deaf.
 2. Clinician review loads with PT-0377 (off-trajectory) selected; its trajectory
    sits visibly below the band; drivers and a review prompt show; the model card
    lists the five inputs and the boundary statement.
-3. Browser tab reads "JourneySpan", not "Willow".
+3. Browser tab reads "JourneySpan".
 4. No letter grade / percentile / streak anywhere in the walkthrough.
 5. Every view still carries its synthetic-data disclaimer.
